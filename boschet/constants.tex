@@ -1,0 +1,14 @@
+% Since the TOC suppresses a chapter title, conditionally set the
+% page heading.
+\define\WPheaderchapter{%
+    \doiftextelse{\getmarking[chapter]}%
+    {\vl{} \ss{\getmarking[chapter]}%
+    {}}%
+}
+
+\define\WPheadertitle{%
+  \doiftextelse{\getmarking[chapter]}%
+  {\vl{}}%
+  {}%
+}
+
