@@ -4,7 +4,16 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\definefontfamily [TextFont] [rm] [LibreBaskerville]
+% Enable replacing ligatures and ellipses (tlig=no).
+\definefontfeature[TextFontFeature][default][
+  liga=yes,
+  tlig=yes,
+  mode=node,
+  protrusion=quality,
+  expansion=quality
+]
+
+\definefontfamily [TextFont] [rm] [LibreBaskerville] [features=TextFontFeature]
 \definefontfamily [TextFont] [ss] [Archivo Narrow]
 \definefontfamily [TextFont] [tt] [Inconsolata]
 \definefontfamily [TextFont] [mm] [TeX Gyre Pagella Math]
@@ -19,6 +28,4 @@
 \definefontsize[e]
 \setupbodyfontenvironment[default][e=6.5]
 \setupbodyfontenvironment[default][d=3.5]
-
-\definefontfeature[default][default][expansion=quality]
 

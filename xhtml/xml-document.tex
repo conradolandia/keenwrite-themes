@@ -5,7 +5,15 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \startxmlsetups xml:html
-  \xmlflush{#1}
+  \xmlfilter{#1}{/head/title/command(xml:title)}
+  \xmlfilter{#1}{/head/meta[@name='author']/command(xml:author)}
+  \xmlfilter{#1}{/head/meta[@name='pseudonym']/command(xml:pseudonym)}
+  \xmlfilter{#1}{/head/meta[@name='count']/command(xml:wordcount)}
+  \xmlfilter{#1}{/head/meta[@name='keywords']/command(xml:keywords)}
+
+  \startdocument
+    \xmlflush{#1}
+  \stopdocument
 \stopxmlsetups
 
 \startxmlsetups xml:body
