@@ -4,13 +4,18 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+% Enable replacing ligatures and ellipses (tlig=no).
+\definefontfeature[default][default][
+  liga=yes,
+  tlig=yes,
+  mode=node,
+  protrusion=quality,
+  expansion=quality
+]
+
 \usetypescript[termes]
 \setupbodyfont[termes, 11pt]
 
 % Enable italics synonym
 \setupbodyfontenvironment[default][em=italic]
-
-\definefontfeature[default][default][
-  expansion=quality,
-]
 
