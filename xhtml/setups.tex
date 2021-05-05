@@ -11,10 +11,12 @@
   % Document elements
   \xmlsetsetup{\xmldocument}{html|body}{xml:*}
 
-  % Meta information (title, author, keywords, copyright, date)
+  % Meta information (title, author, keywords, copyright, word count, date)
   \xmlsetsetup{\xmldocument}{head}{xml:meta}
   \xmlsetsetup{\xmldocument}{title}{xml:title}
   \xmlsetsetup{\xmldocument}{meta[@name='author']}{xml:author}
+  \xmlsetsetup{\xmldocument}{meta[@name='pseudonym']}{xml:pseudonym}
+  \xmlsetsetup{\xmldocument}{meta[@name='count']}{xml:wordcount}
 
   % Header elements
   \xmlsetsetup{\xmldocument}{h1|h2|h3}{xml:*}

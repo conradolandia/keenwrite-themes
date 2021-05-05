@@ -11,7 +11,7 @@
   \stopfrontmatter
 \stopxmlsetups
 
-% Override the default document title, if provided
+% Override the default document title, if provided.
 \startxmlsetups xml:title
   \gdef\TextTitle{\xmlflush{#1}}
 
@@ -20,8 +20,18 @@
   \stopstandardmakeup
 \stopxmlsetups
 
-% Override the default document author name, if provided
+% Override the default document author name, if provided.
 \startxmlsetups xml:author
   \gdef\TextAuthor{\xmlatt{#1}{content}}
+\stopxmlsetups
+
+% Override the default document author pseudonym, if provided.
+\startxmlsetups xml:pseudonym
+  \gdef\TextAuthorPseudonym{\xmlatt{#1}{content}}
+\stopxmlsetups
+
+% Override the document word count, if provided.
+\startxmlsetups xml:wordcount
+  \gdef\TextWordCount{\xmlatt{#1}{content}}
 \stopxmlsetups
 
