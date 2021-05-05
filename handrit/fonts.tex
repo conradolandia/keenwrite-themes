@@ -1,0 +1,25 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure font names and sizes
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Prevent em-dash and en-dash from collapsing into a Unicode character.
+\nohyphencollapsing
+
+% Disable replacing ligatures and ellipses (tlig=no).
+\definefontfeature[TextFontFeature][default][
+  liga=no,
+  tlig=no,
+  mode=node,
+  protrusion=quality,
+  expansion=quality
+]
+
+\definefontfamily [TextFont] [rm] [TeX Gyre Cursor] [features=TextFontFeature]
+\definefontfamily [TextFont] [ss] [TeX Gyre Cursor]
+\definefontfamily [TextFont] [tt] [TeX Gyre Cursor]
+\definefontfamily [TextFont] [mm] [TeX Gyre Pagella Math]
+
+\setupbodyfont[TextFont, 12pt]
+

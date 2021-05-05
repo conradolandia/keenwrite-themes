@@ -12,24 +12,16 @@
 
 % http://wiki.contextgarden.net/Command/setuppagenumbering
 \setuppagenumbering[
+  location=,
   alternative=singlesided,
-  location={footer,right},
 ]
 
-% Conditionally set the page chapter title because the TOC suppresses it.
-\define\TextHeaderChapter{%
-  \doiftextelse{\getmarking[chapter]}%
-  {\ss{\getmarking[chapter]}}%
-  {}%
-}
-
 \define\TextHeaderTitle{%
-  \doiftextelse{\getmarking[chapter]}%
-  {}%
-  {}%
+  \TextAuthor\space/\space\TextTitle\space/\space\pagenumber%
 }
 
+\setupheadertexts[]
 \setupheadertexts
-  [\TextHeaderChapter][\TextHeaderTitle]
-  [\TextHeaderTitle][\TextHeaderChapter]
+  [] [\TextHeaderTitle]
+  [\TextHeaderTitle] []
 

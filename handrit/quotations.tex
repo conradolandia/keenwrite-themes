@@ -1,0 +1,16 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure quotations
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\define\TextQuotationBefore{\blank\startnarrower}
+\define\TextQuotationAfter{\stopnarrower\blank}
+
+\setupdelimitedtext[quotation][
+  before=\TextQuotationBefore,
+  after=\TextQuotationAfter,
+  repeat=yes,
+  middle={\symbol[leftquotation]},
+]
+

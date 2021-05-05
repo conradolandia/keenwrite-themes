@@ -11,9 +11,17 @@
   \stopfrontmatter
 \stopxmlsetups
 
+% Override the default document title, if provided
 \startxmlsetups xml:title
+  \gdef\TextTitle{\xmlflush{#1}}
+
   \startstandardmakeup
-    \title{\xmlflush{#1}}
+    \title{\TextTitle}
   \stopstandardmakeup
+\stopxmlsetups
+
+% Override the default document author name, if provided
+\startxmlsetups xml:author
+  \gdef\TextAuthor{\xmlatt{#1}{content}}
 \stopxmlsetups
 

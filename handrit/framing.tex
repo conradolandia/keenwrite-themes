@@ -1,0 +1,17 @@
+\definestartstop[scenesubsection]{}
+
+\setupalign[
+  hz,
+  nothanging,
+	lesshyphenation,
+	verytolerant,
+	stretch,
+  flushleft,
+]
+
+\startsetups[RightPage]
+	Chapter \getmarking[chapternumber]
+  \hfill
+  \llap{Page \pagenumber}
+\stopsetups
+

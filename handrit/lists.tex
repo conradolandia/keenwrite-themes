@@ -1,0 +1,15 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure ordered and unordered lists
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definesymbol[TextSymbolBullet][•]
+
+% Reduce the spacing around bullets.
+\setupitemgroup[itemize][1][joinedup][
+  leftmargin=2em,
+  distance=\zeropoint,
+  symbol=TextSymbolBullet,
+]
+

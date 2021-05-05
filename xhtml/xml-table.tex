@@ -40,18 +40,18 @@
 \startxmlsetups xml:tr:last
   \stopxtablebody
   \startxtablebody[foot]
-  \startxrow\xmlflush{#1}\stopxrow
+    \startxrow\xmlflush{#1}\stopxrow
   \stopxtablebody
 \stopxmlsetups
 
 \startxmlsetups xml:th
   \startxcell
-    \bold{\xmlflush{#1}}
+    \xmlflush{#1}
   \stopxcell
 \stopxmlsetups
 
 \startxmlsetups xml:td
-  \startxcell
+  \startxcell[align={flush\xmlatt{#1}{align}}]
     \xmlflush{#1}
   \stopxcell
 \stopxmlsetups
