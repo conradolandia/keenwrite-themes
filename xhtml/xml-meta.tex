@@ -11,36 +11,31 @@
   \stopfrontmatter
 \stopxmlsetups
 
-% Override the default document title, if provided.
+% Override the default document title.
 \startxmlsetups xml:title
   \setupdocument[title={\xmlflush{#1}}]
   \setupinteraction[title={\documentvariable{title}}]
-  \gdef\TextTitle{\documentvariable{title}}
 \stopxmlsetups
 
-% Override the default document author name, if provided.
+% Override the default document author name.
 \startxmlsetups xml:author
   \setupdocument[author={\xmlatt{#1}{content}}]
   \setupinteraction[author={\documentvariable{author}}]
-  \gdef\TextAuthor{\documentvariable{author}}
 \stopxmlsetups
 
-% Override the default document author pseudonym, if provided.
-\startxmlsetups xml:pseudonym
-  \setupdocument[pseudonym={\xmlatt{#1}{content}}]
-  \setupinteraction[author={\documentvariable{pseudonym}}]
-  \gdef\TextAuthorPseudonym{\xmlatt{#1}{content}}
+% Override the default document author byline.
+\startxmlsetups xml:byline
+  \setupdocument[byline={\xmlatt{#1}{content}}]
+  \setupinteraction[author={\documentvariable{byline}}]
 \stopxmlsetups
 
 % Override the document word count, if provided.
 \startxmlsetups xml:wordcount
   \setupdocument[words={\xmlatt{#1}{content}}]
-  \gdef\TextWordCount{\documentvariable{words}}
 \stopxmlsetups
 
 % Override the document keywords, if provided.
 \startxmlsetups xml:keywords
   \setupdocument[keywords={\xmlatt{#1}{content}}]
-  \gdef\TextKeywords{\documentvariable{keywords}}
 \stopxmlsetups
 

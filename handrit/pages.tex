@@ -17,7 +17,9 @@
 ]
 
 \define\TextHeaderTitle{%
-  \TextAuthor\space/\space\TextTitle\space/\space\pagenumber%
+  \documentvariable{byline}\space/\space%
+  \documentvariable{title}\space/\space%
+  \pagenumber%
 }
 
 \setupheadertexts[]

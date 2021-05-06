@@ -7,11 +7,11 @@
 \startsetups document:start
   \startstandardmakeup
     \startalignment[middle]
-      {\setupinterlinespace\TextTitle\endgraf}
+      {\setupinterlinespace\documentvariable{title}\endgraf}
       \blank[medium]
-      by \TextAuthor
+      by \documentvariable{byline}
       \blank[big]
-      \TextWordCount{} words
+      \documentvariable{words} words
     \stopalignment
   \stopstandardmakeup
 \stopsetups
