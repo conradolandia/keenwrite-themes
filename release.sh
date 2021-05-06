@@ -5,7 +5,7 @@
 # Included are a variety of document styles.
 # ---------------------------------------------------------------------------
 
-$log "Create theme packs"
+echo "Create theme packs"
 rm -f theme-packs.zip
 git archive HEAD --prefix=themes/ --format=zip -o theme-packs.zip
 

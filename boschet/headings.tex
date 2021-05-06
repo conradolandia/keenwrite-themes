@@ -13,55 +13,45 @@
 \stopMPinclusions
 
 % Draw a thick bar along the side of each chapter page.
-\startuseMPgraphic{WPchapter}
+\startuseMPgraphic{TextChapterGraphic}
   StartPage;
   n := \somenamedheadnumber{chapter}{current};
   width := BackSpace;
 
   if n > 0 :
     if unknown ChapterPageDone[n] :
-          fill (0,0) -- (width,0) -- (width, PaperHeight) -- (0, PaperHeight) -- cycle
-               withcolor \MPcolor{black};
-        ChapterPageDone[n] := 1 ;
+      fill (0,0) -- (width,0) -- (width, PaperHeight) -- (0, PaperHeight) -- cycle
+      withcolor \MPcolor{black};
+      ChapterPageDone[n] := 1 ;
     fi;
   fi;
   StopPage;
 \stopuseMPgraphic
 
-\definecolor[ChapterNumberColour][white]
+\defineoverlay[TextChapterGraphic][\useMPgraphic{TextChapterGraphic}]
+\setupbackgrounds[page][background=TextChapterGraphic]
 
-\defineoverlay[WPchapter][\useMPgraphic{WPchapter}]
-\setupbackgrounds[page][background=WPchapter]
-
-\define[1]\WPchapternumber{\inmargin{\ss{\bfd{\color[ChapterNumberColour]{#1}}}}}
-
-\define[1]\WPChapterFont{\ss{\bfe{#1}}}
-
-\define[1]\WPchaptertitle{%
-  \framed[
-    frame=off,
-    width=\makeupwidth,
-    height=\textheight,
-    align=flushright,
-  ]{\WPChapterFont{#1}\vfill{}}
+\define[1]\TextChapterNumber{%
+  \inmargin{\TextFontChapter{\color[white]{#1}}}
 }
 
+% Chapter titles left-justified, unhyphenated, and force word wrap (broad).
 \setuphead[chapter][
-  style=ChapterNumberFont,
-  after=\pagebreak,
+  style=TextFontChapter,
+  after={\pagebreak\placeinitial},
   header=empty,
   footer=empty,
-  deeptextcommand=\WPchaptertitle,
-  deepnumbercommand=\WPchapternumber,
+  deepnumbercommand=\TextChapterNumber,
+  align={flushleft, nothyphenated, verytolerant, broad},
 ]
 
 \setuphead[section][
   number=no,
-  style=SectionFont,
+  style=TextFontSection,
 ]
 
 \setuphead[subsection][
   number=no,
-  style=SubSectionFont,
+  style=TextFontSubsection,
 ]
 
