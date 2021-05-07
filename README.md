@@ -1,5 +1,5 @@
 # Themes
 
-Document typesetting configurations contain a variety of styles for
+Document typesetting configurations that contain a variety of styles for
 changing the look and feel of documents.
 
