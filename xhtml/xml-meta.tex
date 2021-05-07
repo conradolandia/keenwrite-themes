@@ -11,31 +11,49 @@
   \stopfrontmatter
 \stopxmlsetups
 
-% Override the default document title.
 \startxmlsetups xml:title
   \setupdocument[title={\xmlflush{#1}}]
   \setupinteraction[title={\documentvariable{title}}]
 \stopxmlsetups
 
-% Override the default document author name.
 \startxmlsetups xml:author
   \setupdocument[author={\xmlatt{#1}{content}}]
   \setupinteraction[author={\documentvariable{author}}]
 \stopxmlsetups
 
-% Override the default document author byline.
 \startxmlsetups xml:byline
   \setupdocument[byline={\xmlatt{#1}{content}}]
   \setupinteraction[author={\documentvariable{byline}}]
 \stopxmlsetups
 
-% Override the document word count, if provided.
+\startluacode
+function xml.functions.address( t )
+  context( t.at["content"] )
+end
+\stopluacode
+
+\startxmlsetups xml:address
+  \setupdocument[address={\xmlfunction{#1}{address}}]
+\stopxmlsetups
+
+\startxmlsetups xml:phone
+  \setupdocument[phone={\xmlatt{#1}{content}}]
+\stopxmlsetups
+
+\startxmlsetups xml:email
+  \setupdocument[email={\xmlatt{#1}{content}}]
+\stopxmlsetups
+
+\startxmlsetups xml:byline
+  \setupdocument[byline={\xmlatt{#1}{content}}]
+  \setupinteraction[author={\documentvariable{byline}}]
+\stopxmlsetups
+
 \startxmlsetups xml:wordcount
   \setupdocument[words={\xmlatt{#1}{content}}]
 \stopxmlsetups
 
-% Override the document keywords, if provided.
 \startxmlsetups xml:keywords
-  \setupdocument[keywords={\xmlatt{#1}{content}}]
+  \setupdocument[metadata:keywords={\xmlatt{#1}{content}}]
 \stopxmlsetups
 

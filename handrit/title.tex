@@ -4,15 +4,26 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+\definemakeup[title][
+  top=,
+]
+
 \startsetups document:start
-  \startstandardmakeup
+  \starttitlemakeup
+    \setupinterlinespace[line=14pt]
+
+    {\documentvariable{author}\hfill\documentvariable{words} words}\break
+    \documentvariable{address}\break
+    \documentvariable{phone}\break
+    \documentvariable{email}\break
+
+    \vfill
     \startalignment[middle]
-      {\setupinterlinespace\documentvariable{title}\endgraf}
-      \blank[medium]
-      by \documentvariable{byline}
-      \blank[big]
-      \documentvariable{words} words
+    \documentvariable{title}
+    \blank[medium]
+    by \documentvariable{byline}
     \stopalignment
-  \stopstandardmakeup
+    \vfill
+  \stoptitlemakeup
 \stopsetups
 
