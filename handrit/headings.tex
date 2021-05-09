@@ -7,12 +7,15 @@
 \define[1]\TextChapterNumber{\blank[2*big]\par{}CHAPTER #1 --}
 \define[1]\TextChapterTitle{ \WORD{#1}}
 
+\setuphead[
+  align={flushleft, nothyphenated, notcollapsed, verytolerant, broad},
+]
+
 \setuphead[chapter][
   deepnumbercommand=\TextChapterNumber,
   deeptextcommand=\TextChapterTitle,
   before={\blank[force 6*big]},
   after={\blank[2*medium]},
-  align={flushleft, nothyphenated, verytolerant, broad},
 ]
 
 \setuphead[section][
