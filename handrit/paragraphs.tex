@@ -12,7 +12,13 @@
 \setupalign[
   hz,
   hanging,
+  nothyphenated,
+  stretch,
+  tolerant,
 ]
+
+% Allow hyphenation at naturally-hyphenated words.
+\setbreakpoints[compound]
 
 \setuptolerance[
   stretch,
