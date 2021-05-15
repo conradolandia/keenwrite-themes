@@ -12,16 +12,23 @@
   userdata = userdata or {}
   u = userdata
 
+  -- Adds thousands separators to a number.
+  function u.separator( n )
+    local left, num, right = string.match( n, '^([^%d]*%d)(%d*)(.-)$' )
+    return left..(num:reverse():gsub( '(%d%d%d)', '%1,' ):reverse())..right
+  end
+
+  -- Rounds a number based on standard manuscript format.
   function u.roundish( n )
     n = tonumber( n )
     local near = 100
 
-    if 2500 <= n and n <= 10000 then near = 500 end
+    if  2500 <= n and n <= 10000 then near =  500 end
     if 10000 <= n and n <= 40000 then near = 1000 end
-    if 40000 <= n then near = 5000 end
+    if 40000 <= n                then near = 5000 end
 
     n = math.floor( (n + (near/2)) / near ) * near
-    tex.write( tostring( n ) )
+    tex.write( u.separator( tostring( n ) ) )
   end
 \stopluacode
 
@@ -33,7 +40,7 @@
   \starttitlemakeup
     \setupinterlinespace[line=14pt]
 
-    {
+    {%
       \documentvariable{author}\hfill
       \TextNumberFormat{\documentvariable{words}} words
     }\break
