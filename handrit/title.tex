@@ -8,11 +8,35 @@
   top=,
 ]
 
+\startluacode
+  userdata = userdata or {}
+  u = userdata
+
+  function u.roundish( n )
+    n = tonumber( n )
+    local near = 100
+
+    if 2500 <= n and n <= 10000 then near = 500 end
+    if 10000 <= n and n <= 40000 then near = 1000 end
+    if 40000 <= n then near = 5000 end
+
+    n = math.floor( (n + (near/2)) / near ) * near
+    tex.write( tostring( n ) )
+  end
+\stopluacode
+
+\def\TextNumberFormat#1{%
+  \ctxlua{userdata.roundish("#1")}%
+}
+
 \startsetups document:start
   \starttitlemakeup
     \setupinterlinespace[line=14pt]
 
-    {\documentvariable{author}\hfill\documentvariable{words} words}\break
+    {
+      \documentvariable{author}\hfill
+      \TextNumberFormat{\documentvariable{words}} words
+    }\break
     \documentvariable{address}\break
     \documentvariable{phone}\break
     \documentvariable{email}\break
