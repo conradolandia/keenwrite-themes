@@ -1,0 +1,38 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure speech bubbles.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\startuseMPgraphic{TextBubble}
+  z1 = (0, 0) ;
+  z2 = (OverlayWidth, 0) ;
+  z3 = (OverlayWidth, OverlayHeight) ;
+  z4 = (0, OverlayHeight) ;
+
+  2/12[x1,x2] = x8 + 1cm = x7 + .5cm = x9 - .5cm ;
+  y7 =  0cm ;
+  y8 = -1cm ;
+  y9 =  0cm ;
+
+  path p ;
+  p = (z1--z7--z8--z9--z2--z3--z4--cycle) cornered .25cm ;
+  draw p withpen pencircle scaled 0.5 ;
+
+  setbounds currentpicture to OverlayBox ;
+\stopuseMPgraphic
+
+\defineoverlay[TextBubbleOverlay][\useMPgraphic{TextBubble}]
+\defineframedtext[TextBubbleFrame][
+  frame=off,
+  width=\textwidth,
+  background=TextBubbleOverlay,
+  offset=.75em,
+  after={\blank[1.25cm]},
+]
+
+\definestartstop[bubble][
+  before={\startTextBubbleFrame},
+  after={\stopTextBubbleFrame},
+]
+
