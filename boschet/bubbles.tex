@@ -4,13 +4,26 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\startuseMPgraphic{TextBubble}
+% Wraps text in a speech bubble.
+%
+% side -- controls whether the speech bubble is left- or right-facing. 
+%
+\startuseMPgraphic{TextBubble}{side}
   z1 = (0, 0) ;
   z2 = (OverlayWidth, 0) ;
   z3 = (OverlayWidth, OverlayHeight) ;
   z4 = (0, OverlayHeight) ;
 
-  2/12[x1,x2] = x8 + 1cm = x7 + .5cm = x9 - .5cm ;
+  offset := 1 ;
+  tail := 1 ;
+
+  % Flip the tail's location and direction.
+  if \MPvar{side} = 1:
+    offset := 5 ;
+    tail := -1 ;
+  fi
+
+  (offset/6)[x1,x2] = x8 + 1cm * tail = x7 + .5cm = x9 - .5cm ;
   y7 =  0cm ;
   y8 = -1cm ;
   y9 =  0cm ;
@@ -22,17 +35,36 @@
   setbounds currentpicture to OverlayBox ;
 \stopuseMPgraphic
 
-\defineoverlay[TextBubbleOverlay][\useMPgraphic{TextBubble}]
-\defineframedtext[TextBubbleFrame][
+% Receive text (left-facing).
+\defineoverlay[TextBubbleRxOverlay][\useMPgraphic{TextBubble}{side=0}]
+\defineframedtext[TextBubbleRxFrame][
   frame=off,
-  width=\textwidth,
-  background=TextBubbleOverlay,
+  background=TextBubbleRxOverlay,
+  width=fit,
   offset=.75em,
+  location=left,
   after={\blank[1.25cm]},
 ]
 
-\definestartstop[bubble][
-  before={\startTextBubbleFrame},
-  after={\stopTextBubbleFrame},
+% Send text (right-facing).
+\defineoverlay[TextBubbleTxOverlay][\useMPgraphic{TextBubble}{side=1}]
+\defineframedtext[TextBubbleTxFrame][
+  frame=off,
+  background=TextBubbleTxOverlay,
+  width=fit,
+  offset=.75em,
+  location=right,
+  after={\blank[1.25cm]},
+]
+
+% Map XHTML classes to start/stop environments.
+\definestartstop[bubblerx][
+  before={\startTextBubbleRxFrame},
+  after={\stopTextBubbleRxFrame},
+]
+
+\definestartstop[bubbletx][
+  before={\startTextBubbleTxFrame},
+  after={\stopTextBubbleTxFrame},
 ]
 

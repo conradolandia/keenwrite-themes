@@ -19,7 +19,7 @@
   \xmlsetsetup{\xmldocument}{h1|h2|h3}{xml:*}
 
   % Block elements
-  \xmlsetsetup{\xmldocument}{blockquote|div|p}{xml:*}
+  \xmlsetsetup{\xmldocument}{blockquote|div|p|pre}{xml:*}
   \xmlsetsetup{\xmldocument}{blockquote/p}{xml:blockquote:p}
   \xmlsetsetup{\xmldocument}{blockquote[count(p)=1]}{xml:blockquote:single}
   \xmlsetsetup{\xmldocument}{blockquote[count(p)=2]/p[position()=first()]}{xml:blockquote:began}
@@ -27,6 +27,8 @@
   \xmlsetsetup{\xmldocument}{blockquote[count(p)>2]/p[position()=first()]}{xml:blockquote:began}
   \xmlsetsetup{\xmldocument}{blockquote[count(p)>2]/p[position()>first() and position()<last()]}{xml:blockquote:multiple:middle}
   \xmlsetsetup{\xmldocument}{blockquote[count(p)>2]/p[position()=last()]}{xml:blockquote:ended}
+  \xmlsetsetup{\xmldocument}{pre}{xml:pre}
+  \xmlsetsetup{\xmldocument}{pre/code}{xml:pre:code}
 
   % List elements
   \xmlsetsetup{\xmldocument}{ul|ol|li|dl|dt|dd}{xml:*}
@@ -35,7 +37,7 @@
   \xmlsetsetup{\xmldocument}{hr|br}{xml:*}
 
   % Inline elements
-  \xmlsetsetup{\xmldocument}{img|a|code|b|strong|em|q|sub|sup}{xml:*}
+  \xmlsetsetup{\xmldocument}{img|a|b|strong|em|q|sub|sup}{xml:*}
 
   % Table elements
   \xmlsetsetup{\xmldocument}{table|thead|tbody|tfoot|th|td|caption}{xml:*}

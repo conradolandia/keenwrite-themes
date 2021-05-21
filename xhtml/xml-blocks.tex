@@ -4,13 +4,6 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-% Paragraphs are followed by a paragraph break.
-\startxmlsetups xml:p
-  \startparagraph
-    \xmlflush{#1}
-  \stopparagraph
-\stopxmlsetups
-
 % Indented quotations.
 \startxmlsetups xml:blockquote
   \xmlflush{#1}
@@ -38,6 +31,26 @@
 \startxmlsetups xml:blockquote:ended
     \par\xmlflush{#1}
   \stopquotation
+\stopxmlsetups
+
+% Paragraphs are followed by a paragraph break.
+\startxmlsetups xml:p
+  \startparagraph
+    \xmlflush{#1}
+  \stopparagraph
+\stopxmlsetups
+
+\startxmlsetups xml:pre
+  \startlines
+    \xmlflush{#1}
+  \stoplines
+\stopxmlsetups
+
+% Ensure that escaped entities and newlines are respected.
+\startxmlsetups xml:pre:code
+  \startxmldisplayverbatim
+    \xmlflushlinewise{#1}
+  \stopxmldisplayverbatim
 \stopxmlsetups
 
 % Map arbitrary div classes, defined by fenced divs.

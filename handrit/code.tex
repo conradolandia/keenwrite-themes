@@ -4,8 +4,15 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\setuptyping[
-  before={\startframedtext[width=\makeupwidth]},
+
+\setuplines[
+  before={\startframedtext[
+    background=color,
+    backgroundcolor=TextColourPrimary,
+    foregroundcolor=TextColourTertiaryLt,
+    width=\textwidth,
+    corner=round,
+  ]},
   after={\stopframedtext},
 ]
 
