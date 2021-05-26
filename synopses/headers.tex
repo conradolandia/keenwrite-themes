@@ -1,0 +1,46 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure headers and footers.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\setupheadertexts[]
+
+\setupheadertexts[\setups{TextHeaderLeft}][] [][\setups{TextHeaderRight}]
+
+% Chapter number and title on the left.
+\startsetups[TextHeaderLeft]
+  \midaligned{\ss \documentvariable{byline}}
+\stopsetups
+
+\startsetups[TextHeaderRight]
+  \midaligned{\ss \documentvariable{title}}
+\stopsetups
+
+% Calculate the percentage complete for a progress meter.
+\doifmodeelse{*first} {
+  \definemeasure[TextPercentComplete][\zeropoint]
+} {
+  \definemeasure[TextPercentComplete][\textwidth*\currentpage/\lastpage]
+}
+
+\define\TextPageNumber{%
+  \inframed[
+    frame=off,
+    topframe=on,
+    bottomframe=off,
+    width=\measure{TextPercentComplete},
+    framecolor=TextColourTertiaryLt,
+  ]{\currentpage\ of \lastpage}
+}
+
+\startsetups[TextFooterLeft]
+  \midaligned{\ss \TextPageNumber}
+\stopsetups
+
+\startsetups[TextFooterRight]
+  \midaligned{\ss \TextPageNumber}
+\stopsetups
+
+\setupfootertexts[\setups{TextFooterLeft}][] [][\setups{TextFooterRight}]
+

@@ -1,0 +1,30 @@
+\definecounter[ChapterNumber][
+  way=bytext,
+  prefix=no,
+]
+
+\define[1]\CustomChapterHeading{%
+  \ss
+  Chapter
+  \incrementcounter[ChapterNumber]
+  \rawcountervalue[ChapterNumber]:
+  \hspace[medium]
+  #1
+}
+
+\setuphead[chapter][
+  align=middle,
+  number=no,
+  textcommand=\CustomChapterHeading,
+]
+
+\setuphead[section][
+  align=middle,
+  number=no,
+]
+
+\setuphead[subsection][
+  placehead=hidden,
+  number=no,
+]
+

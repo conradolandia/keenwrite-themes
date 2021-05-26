@@ -1,0 +1,135 @@
+\startuseMPgraphic{TextBackgroundGraphic}
+  draw_multi_pars;
+  draw_multi_side;
+\stopuseMPgraphic
+
+\definetextbackground[TextBackground][
+  location=paragraph,
+  mp=TextBackgroundGraphic,
+  frame=off,
+  framecolor=TextColourTertiaryDk,
+  rulethickness=4bp,
+  leftoffset=1em,
+  rightoffset=1em,
+  topoffset=1em,
+  bottomoffset=1em,
+  background=color,
+  backgroundcolor=TextColourTertiaryLt,
+  strut=yes,
+]
+
+% Enumerate the overview (storylines).
+\definenumber[TextCounterOverview][
+  prefix=no,
+]
+
+\setnumber[TextCounterOverview][1]
+
+% All sections are based on this start/stop definition.
+\definestartstop[TextSection][
+  before={\startTextBackground},
+  after={\stopTextBackground \blank[small]},
+]
+
+\definestartstop[outline,scene][TextSection][
+  before=,
+  after=,
+]
+
+\define[1]\TextSectionHeading{%
+  \startalignment[middle]\blank[2*big]{\bold #1}\stopalignment\blank
+}
+
+\definestartstop[overview][TextSection][
+  before={%
+    \incrementcounter[TextCounterOverview]
+    \TextSectionHeading{Storyline \rawcountervalue[TextCounterOverview]}
+  },
+  after=,
+]
+
+\definestartstop[sequel][TextSection][
+  before={\TextSectionHeading{Sequel}},
+  after=,
+]
+
+% Use \nobreak to prevent widowing the section title.
+\define[1]\TextSectionTitle{%
+  \startTextBackground
+  {\bold #1}\par\nobreak
+
+  % Start indenting after the first paragraph.
+  \setupindenting[yes, next, small]
+}
+
+\definestartstop[date][TextSection][
+  before={\startalignment[middle]},
+  after={\stopalignment \blank[small]},
+]
+\definestartstop[elapsed][TextSection][ 
+  before={\TextSectionTitle{Time elapsed (since previous scene)}},
+]
+\definestartstop[summary][TextSection][ 
+  before={\TextSectionTitle{Summary}},
+]
+\definestartstop[location][TextSection][ 
+  before={\TextSectionTitle{Location}},
+]
+\definestartstop[major][TextSection][ 
+  before={\TextSectionTitle{Major characters}},
+]
+\definestartstop[minor][TextSection][ 
+  before={\TextSectionTitle{Minor characters}},
+]
+\definestartstop[growth][TextSection][ 
+  before={\TextSectionTitle{Character growth}},
+]
+\definestartstop[weather][TextSection][ 
+  before={\TextSectionTitle{Weather}},
+]
+\definestartstop[advancement][TextSection][ 
+  before={\TextSectionTitle{Story advances}},
+]
+\definestartstop[revealment][TextSection][ 
+  before={\TextSectionTitle{Backstory revealed}},
+]
+\definestartstop[plot][TextSection][ 
+  before={\TextSectionTitle{Plot points}},
+]
+\definestartstop[action][TextSection][ 
+  before={\TextSectionTitle{Dramatic action}},
+]
+\definestartstop[key][TextSection][ 
+  before={\TextSectionTitle{Key moment or information}},
+]
+\definestartstop[theme][TextSection][ 
+  before={\TextSectionTitle{Thematic significance}},
+]
+\definestartstop[setting][TextSection][ 
+  before={\TextSectionTitle{Setting details}},
+]
+\definestartstop[goal][TextSection][ 
+  before={\TextSectionTitle{Character goal}},
+]
+\definestartstop[conflict][TextSection][ 
+  before={\TextSectionTitle{Conflict, tension, or suspense}},
+]
+\definestartstop[disaster][TextSection][ 
+  before={\TextSectionTitle{Disaster, obstacles, or setbacks}},
+]
+\definestartstop[failure][TextSection][ 
+  before={\TextSectionTitle{Protagonist failure}},
+]
+\definestartstop[development][TextSection][ 
+  before={\TextSectionTitle{Emotional development}},
+]
+\definestartstop[reaction][TextSection][ 
+  before={\TextSectionTitle{Reaction (character's pain)}},
+]
+\definestartstop[dilemma][TextSection][ 
+  before={\TextSectionTitle{Dilemma (terrible options)}},
+]
+\definestartstop[decision][TextSection][ 
+  before={\TextSectionTitle{Decision (least risky option)}},
+]
+
