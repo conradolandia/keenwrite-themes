@@ -1,3 +1,5 @@
+![Total Downloads](https://img.shields.io/github/downloads/DaveJarvis/keenwrite-themes/total?color=blue&label=Total%20Downloads&style=flat) ![Release Downloads](https://img.shields.io/github/downloads/DaveJarvis/keenwrite-themes/latest/total?color=purple&label=Release%20Downloads&style=flat) ![Release Date](https://img.shields.io/github/release-date/DaveJarvis/keenwrite-themes?color=red&style=flat&label=Release%20Date) ![Release Version](https://img.shields.io/github/v/release/DaveJarvis/keenwrite-themes?style=flat&label=Release)
+
 # Themes
 
 Document typesetting configurations that contain a variety of styles for
