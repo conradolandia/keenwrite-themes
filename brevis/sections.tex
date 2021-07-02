@@ -1,0 +1,70 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure presentation for document section content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Rounded rectangle surrounds the summary text.
+\startuseMPgraphic{TextBackgroundGraphic}
+  begingroup ;
+    for i = 1 upto nofmultipars :
+      draw (
+        llcorner multipars[ i ] --
+        lrcorner multipars[ i ] --
+        urcorner multipars[ i ] --
+        ulcorner multipars[ i ] --
+        cycle
+      )
+      enlarged( EmWidth, EmWidth )
+      cornered( 2 * EmWidth )
+      withcolor "darkgray" ;
+    endfor ;
+  endgroup ;
+\stopuseMPgraphic
+
+\definetextbackground[TextBackground][
+  location=paragraph,
+  mp=TextBackgroundGraphic,
+  before={\blank[2*big]},
+]
+
+% Enumerate the overview (storylines).
+\definenumber[TextCounterOverview][
+  prefix=no,
+]
+
+\setnumber[TextCounterOverview][1]
+
+% Suppress all document sections except those defined in the following setup.
+% These are listed in the order they must appear in the final PDF, which is
+% independent of the order they appear in the source XML document.
+\startxmlsetups xml:div
+  \xmlfilter{#1}{[@class='sequel']/command(xml:sequel)}
+  \xmlfilter{#1}{[@class='date']/command(xml:date)}
+  \xmlfilter{#1}{[@class='summary']/command(xml:summary)}
+\stopxmlsetups
+
+% Separate the summaries by way of the sequel section.
+\startxmlsetups xml:sequel
+  % Count the sequels per chapter.
+  \incrementcounter[TextCounterOverview]
+
+  \blank[2*big]
+  \startalignment[middle]
+    \bold Storyline \rawcountervalue[TextCounterOverview]
+  \stopalignment
+\stopxmlsetups
+
+\startxmlsetups xml:date
+  \startalignment[middle]
+    \xmlflush{#1}
+  \stopalignment
+\stopxmlsetups
+
+% Brief exposition containing part of chapter summary.
+\startxmlsetups xml:summary
+  \startTextBackground
+    \xmlflush{#1}
+  \stopTextBackground
+\stopxmlsetups
+

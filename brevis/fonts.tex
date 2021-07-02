@@ -1,0 +1,35 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure font names and sizes.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Enable replacing ligatures and ellipses (tlig=no).
+\definefontfeature[TextFontFeature][default][
+  liga=yes,
+  tlig=yes,
+  mode=node,
+  protrusion=quality,
+  expansion=quality
+]
+
+\definefontfamily [TextFont] [rm] [LibreBaskerville] [features=TextFontFeature]
+\definefontfamily [TextFont] [ss] [Roboto]
+\definefontfamily [TextFont] [tt] [ALMFixed]
+\definefontfamily [TextFont] [mm] [TeX Gyre Pagella Math]
+
+\setupbodyfont[TextFont, 12pt]
+
+% Equate \it with \em
+\setupbodyfontenvironment[default][em=italic]
+
+% Font sizes for chapter heading and chapter number.
+\setupbodyfontenvironment[default][d=3.5]
+\setupbodyfontenvironment[default][e=6.5]
+
+\definefontfeature[default][default][
+  expansion=quality,
+]
+
+\definefontsize[e]
+

@@ -1,0 +1,26 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure page layouts, including header and footer.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\setuppapersize[letter]
+
+\setupmakeup[standard][
+  doublesided=no,
+]
+
+\setupcolors[
+  state=start,
+  rgb=yes,
+  spot=no,
+  pagecolormodel=auto,
+  textcolor=TextColourTertiaryDk,
+]
+
+% http://wiki.contextgarden.net/Command/setuppagenumbering
+\setuppagenumbering[
+  location=,
+  alternative=singlesided,
+]
+

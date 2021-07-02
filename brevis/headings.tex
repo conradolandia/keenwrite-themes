@@ -1,0 +1,24 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure chapter headings.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definecounter[ChapterNumber][
+  way=bytext,
+  prefix=no,
+]
+
+\define[1]\CustomChapterHeading{%
+  Chapter
+  \incrementcounter[ChapterNumber]
+  \rawcountervalue[ChapterNumber]:
+  #1
+}
+
+\setuphead[chapter][
+  align=middle,
+  number=no,
+  textcommand=\CustomChapterHeading,
+]
+

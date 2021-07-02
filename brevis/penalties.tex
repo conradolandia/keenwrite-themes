@@ -1,0 +1,17 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure widows and orphans.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Prevent widows and orphans by forcing at least two (2) lines together.
+\startsetups[grid][TextPenalties]
+  \setdefaultpenalties
+  \setpenalties\widowpenalties{2}{10000}
+  \setpenalties\clubpenalties {2}{10000}
+\stopsetups
+
+\setuplayout[
+  setups=TextPenalties,
+]
+
