@@ -10,29 +10,14 @@
 
 % Chapter number and title on the left.
 \startsetups[TextHeaderLeft]
-  \midaligned{\ss \documentvariable{byline}}
+  \midaligned{\ss \documentvariable{title}}
 \stopsetups
 
 \startsetups[TextHeaderRight]
   \midaligned{\ss \documentvariable{title}}
 \stopsetups
 
-% Calculate the percentage complete for a progress meter.
-\doifmodeelse{*first} {
-  \definemeasure[TextPercentComplete][\zeropoint]
-} {
-  \definemeasure[TextPercentComplete][\textwidth*\currentpage/\lastpage]
-}
-
-\define\TextPageNumber{%
-  \inframed[
-    frame=off,
-    topframe=on,
-    bottomframe=off,
-    width=\measure{TextPercentComplete},
-    framecolor=TextColourTertiaryLt,
-  ]{\currentpage\ of \lastpage}
-}
+\define\TextPageNumber{\currentpage\ of \lastpage}
 
 \startsetups[TextFooterLeft]
   \midaligned{\ss \TextPageNumber}
