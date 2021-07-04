@@ -62,73 +62,123 @@
   \setupindenting[yes, next, small]
 }
 
+% Briefly, what happens in the scene?
+\definestartstop[summary][TextSection][ 
+  before={\TextSectionTitle{Summary}},
+]
+
+% Time of day, season, and date.
 \definestartstop[date][TextSection][
   before={\startalignment[middle]},
   after={\stopalignment \blank[small]},
 ]
+
+% How much time elapsed for the main character since previous scene.
 \definestartstop[elapsed][TextSection][ 
   before={\TextSectionTitle{Time elapsed (since previous scene)}},
 ]
-\definestartstop[summary][TextSection][ 
-  before={\TextSectionTitle{Summary}},
-]
+
+% Where does the scene take place?
 \definestartstop[location][TextSection][ 
   before={\TextSectionTitle{Location}},
 ]
+
+% Main characters in this scene (tag with pov).
 \definestartstop[major][TextSection][ 
   before={\TextSectionTitle{Major characters}},
 ]
+
+% Minor characters in this scene.
 \definestartstop[minor][TextSection][ 
   before={\TextSectionTitle{Minor characters}},
 ]
+
+% How does the character grow in this scene?
 \definestartstop[growth][TextSection][ 
   before={\TextSectionTitle{Character growth}},
 ]
+
+% What's happening outside?
 \definestartstop[weather][TextSection][ 
   before={\TextSectionTitle{Weather}},
 ]
+
+% What main way is the story advanced?
 \definestartstop[advancement][TextSection][ 
   before={\TextSectionTitle{Story advances}},
 ]
+
+% What backstory events are revealed?
 \definestartstop[revealment][TextSection][ 
   before={\TextSectionTitle{Backstory revealed}},
 ]
+
+% What new plot points are revealed?
+% 1. Exposition (setting) and conflict (problem). 
+% 2. Rising actions (building to conflict). 
+% 3. Climax (main point).
+% 4. Falling action (winding up).
+% 5. Denouement (tragedy or happy).
 \definestartstop[plot][TextSection][ 
   before={\TextSectionTitle{Plot points}},
 ]
+
+% What dramatic action takes place?
 \definestartstop[action][TextSection][ 
   before={\TextSectionTitle{Dramatic action}},
 ]
+
+% What is the key moment or key information offered?
 \definestartstop[key][TextSection][ 
   before={\TextSectionTitle{Key moment or information}},
 ]
+
+% How does this scene meld with the story theme?
 \definestartstop[theme][TextSection][ 
   before={\TextSectionTitle{Thematic significance}},
 ]
+
+% Explore the environment.
 \definestartstop[setting][TextSection][ 
   before={\TextSectionTitle{Setting details}},
 ]
+
+% What does the main character want to achieve?
 \definestartstop[goal][TextSection][ 
   before={\TextSectionTitle{Character goal}},
 ]
+
+% What are the sources of conflict?
 \definestartstop[conflict][TextSection][ 
   before={\TextSectionTitle{Conflict, tension, or suspense}},
 ]
+
+% How is the character prevented from achieving the goal?
 \definestartstop[disaster][TextSection][ 
   before={\TextSectionTitle{Disaster, obstacles, or setbacks}},
 ]
+
+% How does the character fail to achieve the goal?
 \definestartstop[failure][TextSection][ 
   before={\TextSectionTitle{Protagonist failure}},
 ]
+
+% How does the character change, emotionally, due to failure?
 \definestartstop[development][TextSection][ 
   before={\TextSectionTitle{Emotional development}},
 ]
+
+% How does the character react to the developments?
 \definestartstop[reaction][TextSection][ 
   before={\TextSectionTitle{Reaction (character's pain)}},
 ]
+
+% What options present themselves to the character?
 \definestartstop[dilemma][TextSection][ 
   before={\TextSectionTitle{Dilemma (terrible options)}},
 ]
+
+% Which option does the character choose?
 \definestartstop[decision][TextSection][ 
   before={\TextSectionTitle{Decision (least risky option)}},
 ]
