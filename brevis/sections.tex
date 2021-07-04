@@ -39,17 +39,22 @@
 % These are listed in the order they must appear in the final PDF, which is
 % independent of the order they appear in the source XML document.
 \startxmlsetups xml:div
-  \xmlfilter{#1}{[@class='sequel']/command(xml:sequel)}
+  \xmlfilter{#1}{[@class='overview']/command(xml:overview)}
   \xmlfilter{#1}{[@class='date']/command(xml:date)}
   \xmlfilter{#1}{[@class='summary']/command(xml:summary)}
 \stopxmlsetups
 
 % Separate the summaries by way of the sequel section.
-\startxmlsetups xml:sequel
+\startxmlsetups xml:overview
   % Count the sequels per chapter.
   \incrementcounter[TextCounterOverview]
 
   \blank[2*big]
+
+  % Prevent widowing the storyline and date from the summary.
+  \testpage[5]
+
+  % Separate each storyline using a counter.
   \startalignment[middle]
     \bold Storyline \rawcountervalue[TextCounterOverview]
   \stopalignment
