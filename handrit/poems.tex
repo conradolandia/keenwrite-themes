@@ -1,0 +1,23 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure various poem types.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definelines[TextPoemLimerick]
+
+\definestartstop[limerick][
+  before={\startTextPoemLimerick},
+  after={\stopTextPoemLimerick},
+]
+
+\startxmlsetups xml:limerick
+  \startlines
+    % Indent the entire limerick, including the first line.
+    \setupindenting[yes, 1in, next, first]
+
+    % Respect newlines.
+    \em{\xmlflushlinewise{#1}}
+  \stoplines
+\stopxmlsetups
+

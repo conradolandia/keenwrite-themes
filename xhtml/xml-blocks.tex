@@ -40,10 +40,13 @@
   \stopparagraph
 \stopxmlsetups
 
+% Define a start/stop environment for preformatted text.
+\definelines[preformatted]
+
 \startxmlsetups xml:pre
-  \startlines
+  \startpreformatted
     \xmlflush{#1}
-  \stoplines
+  \stoppreformatted
 \stopxmlsetups
 
 % Ensure that escaped entities and newlines are respected.
