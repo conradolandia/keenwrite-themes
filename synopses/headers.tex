@@ -6,16 +6,23 @@
 
 \setupheadertexts[]
 
-\setupheadertexts[\setups{TextHeaderLeft}][] [][\setups{TextHeaderRight}]
+\startsetups[TextHeaderLeftLeft]
+  \ss
+  \leftaligned{Chapter \getmarking[chapternumber]: \getmarking[chapter]}
+\stopsetups
 
-% Chapter number and title on the left.
-\startsetups[TextHeaderLeft]
-  \midaligned{\ss \documentvariable{byline}}
+\startsetups[TextHeaderLeftRight]
+  \ss
+  \rightaligned{Storyline \rawcountervalue[TextCounterOverview]}
 \stopsetups
 
 \startsetups[TextHeaderRight]
   \midaligned{\ss \documentvariable{title}}
 \stopsetups
+
+\setupheadertexts
+  [\setups{TextHeaderLeftLeft}][\setups{TextHeaderLeftRight}]
+  [][\setups{TextHeaderRight}]
 
 % Calculate the percentage complete for a progress meter.
 \doifmodeelse{*first} {
