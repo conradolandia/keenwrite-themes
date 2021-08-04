@@ -4,6 +4,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\setupinterlinespace[line=24pt]
+
 \setupwhitespace[medium]
 
 \setbreakpoints[compound]
@@ -11,13 +13,17 @@
 \setupalign[
   hz,
   hanging,
-  %lesshyphenated,
-  lesshyphenation,
-  stretch,
+  nothyphenated,
+  extremestretch,
+  tolerant,
+  flushleft,
 ]
 
+% Allow line-breaking at naturally-hyphenated words.
+\setbreakpoints[compound]
+
 \setuptolerance[
-  stretch,
+  extremestretch,
   verytolerant,
 ]
 

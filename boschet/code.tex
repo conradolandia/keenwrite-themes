@@ -4,14 +4,16 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+\definecolor[TextColourTertiaryLtLt][h=FCF7EB]
+
 % Expand a dark-themed pseudo-terminal to fit the page width. Tertiary
 % colours are shades and primary colour is for text: swapping the colours
 % produces light text on a dark background.
 \setuplines[preformatted][
   before={\startframedtext[
     background=color,
-    backgroundcolor=TextColourPrimaryDk,
-    foregroundcolor=TextColourTertiaryLt,
+    backgroundcolor=TextColourTertiaryDk,
+    foregroundcolor=TextColourTertiaryLtLt,
     width=\textwidth,
     corner=round,
   ]},

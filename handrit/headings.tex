@@ -4,18 +4,19 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\define[1]\TextChapterNumber{Chapter #1 --}
+\define[2]\TextChapter{\midaligned{Chapter #1 --- #2}}
+\define[1]\TextByLine{\noindentation by #1}
 
 \setuphead[
-  align={flushleft, nothyphenated, notcollapsed, verytolerant, broad},
+  align={nothyphenated, notcollapsed, verytolerant, broad},
 ]
 
 \setuphead[chapter][
   style=,
-  align=middle,
-  deepnumbercommand=\TextChapterNumber,
+  command=\TextChapter,
   before={\blank[force 6*big]},
   after={\blank[2*medium]},
+  align=middle,
 ]
 
 \setuphead[section][
@@ -28,7 +29,8 @@
 \setuphead[subsection][
   number=no,
   indent=no,
-  before={\noindentation by },
+  before={},
+  deeptextcommand=\TextByLine,
   style=\Words,
 ]
 
