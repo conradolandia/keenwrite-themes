@@ -1,0 +1,42 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure projections. Creates a fancy border around text with a shaded
+% background.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definecolor[TextColourProjection][h=BBBBBB]
+
+\startuseMPgraphic{TextProjection}
+linejoin := mitered;
+
+path p ;
+p := (0, 0)
+  -- (0, OverlayHeight + 5)
+  -- (.404 * OverlayWidth, OverlayHeight + 5)
+  -- (.404 * OverlayWidth + 5, OverlayHeight)
+  -- (OverlayWidth, OverlayHeight)
+  -- (OverlayWidth, 5)
+  -- (OverlayWidth - 5, 0)
+  -- (OverlayWidth - 5, 0)
+  -- cycle;
+
+fill p withcolor \MPcolor{TextColourProjection} ;
+draw p withpen pencircle scaled .5 ;
+\stopuseMPgraphic
+
+\defineoverlay[TextProjectionOverlay][\useMPgraphic{TextProjection}]
+\defineframedtext[TextProjectionFrame][
+  frame=off,
+  background=TextProjectionOverlay,
+  width=fit,
+  location=middle,
+  before={\blank[medium]},
+  after={\blank[medium]},
+]
+
+\definestartstop[projection][
+  before={\startTextProjectionFrame},
+  after={\stopTextProjectionFrame},
+]
+
