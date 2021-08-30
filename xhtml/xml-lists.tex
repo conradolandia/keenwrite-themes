@@ -20,3 +20,25 @@
   \startitem \xmlflush{#1} \stopitem
 \stopxmlsetups
 
+% Default description list style; override in theme, if needed.
+\definedescription[description][
+  hang=fit,
+  width=fit,
+  headstyle=bold,
+  align=justify,
+  margin=yes,
+]
+
+\startxmlsetups xml:dl
+  \xmlflush{#1}
+\stopxmlsetups
+
+\startxmlsetups xml:dt
+  \startdescription{\xmlflush{#1}}
+\stopxmlsetups
+
+\startxmlsetups xml:dd
+    \xmlflush{#1}
+  \stopdescription
+\stopxmlsetups
+
