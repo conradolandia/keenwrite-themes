@@ -21,6 +21,7 @@
 \startxmlsetups xml:tbody
   \startxtablebody[body]
     \xmlflush{#1}
+  \stopxtablebody
 \stopxmlsetups
 
 \startxmlsetups xml:tfoot
@@ -33,15 +34,6 @@
   \startxrow
     \xmlflush{#1}
   \stopxrow
-\stopxmlsetups
-
-% When the XHTML table lacks a tfoot element, treat the last table row
-% in the body as part of the footer, which may be styled independently.
-\startxmlsetups xml:tr:last
-  \stopxtablebody
-  \startxtablebody[foot]
-    \startxrow\xmlflush{#1}\stopxrow
-  \stopxtablebody
 \stopxmlsetups
 
 \startxmlsetups xml:th
