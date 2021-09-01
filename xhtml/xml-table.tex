@@ -6,9 +6,11 @@
 
 \startxmlsetups xml:table
   \blank
-  \startembeddedxtable
-    \xmlflush{#1}
-  \stopembeddedxtable
+  \startplacetable[title={\xmltext{#1}/caption}]
+    \startembeddedxtable
+      \xmlflush{#1}
+    \stopembeddedxtable
+  \stopplacetable
   \blank
 \stopxmlsetups
 
