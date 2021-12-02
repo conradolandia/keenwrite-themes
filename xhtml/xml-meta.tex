@@ -4,13 +4,6 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\startxmlsetups xml:meta
-  \startfrontmatter
-    \xmlflush{#1}
-    \placecontent
-  \stopfrontmatter
-\stopxmlsetups
-
 \startxmlsetups xml:title
   \setupdocument[title={\xmlflush{#1}}]
   \setupinteraction[title={\documentvariable{title}}]

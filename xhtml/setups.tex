@@ -28,6 +28,7 @@
   \xmlsetsetup{\xmldocument}{blockquote[count(p)>2]/p[position()>first() and position()<last()]}{xml:blockquote:multiple:middle}
   \xmlsetsetup{\xmldocument}{blockquote[count(p)>2]/p[position()=last()]}{xml:blockquote:ended}
   \xmlsetsetup{\xmldocument}{pre}{xml:pre}
+  \xmlsetsetup{\xmldocument}{code}{xml:code}
   \xmlsetsetup{\xmldocument}{pre/code}{xml:pre:code}
   \xmlsetsetup{\xmldocument}{div[@class='limerick']/p}{xml:limerick}
 
@@ -57,6 +58,7 @@
 \input xml-inline
 \input xml-table
 \input xml-tex
+\input xml-syntax
 
 \xmlregistersetup{xml:xhtml}
 
