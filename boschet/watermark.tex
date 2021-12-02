@@ -1,0 +1,27 @@
+\definecolor[TextWatermarkColour][h=E9E9E9]
+
+\define\BetaReaderName{}
+\define\TextWatermark{}
+
+% Uncomment to enable beta reader watermark (right side of each page)
+%\define\BetaReaderName{First Last, name@host.com}
+%\define\TextWatermark{\rotate[rotation=-90]{Beta copy for \BetaReaderName}}
+
+\definelayer[TextWatermarkLayer][
+  repeat=yes,
+  width=\rightmarginwidth
+]
+
+\setupbackgrounds[text][rightmargin][
+  background=TextWatermarkLayer,
+  state=start
+]
+
+\setlayerframed[TextWatermarkLayer][
+  frame=off,
+  foregroundcolor=TextWatermarkColour,
+  foregroundstyle=slanted,
+  width=\rightmarginwidth,
+  align={flushright},
+]{\TextWatermark}
+
