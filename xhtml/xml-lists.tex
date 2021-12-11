@@ -5,13 +5,23 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \startxmlsetups xml:ol
-  \startitemize[n]
+  \xmldoifelse{#1}{/li/p} {%
+    \doifnumberelse{\xmlatt{#1}{start}} 
+      {\startitemize[n][start=\xmlatt{#1}{start}]}
+      {\startitemize[n]}
+  } {%
+    \doifnumberelse{\xmlatt{#1}{start}} 
+      {\startitemize[n,packed][start=\xmlatt{#1}{start}]}
+      {\startitemize[n,packed]}
+  }
     \xmlflush{#1}
   \stopitemize
 \stopxmlsetups
 
 \startxmlsetups xml:ul
-  \startitemize
+  \xmldoifelse{#1}{/li/p}
+    {\startitemize} 
+    {\startitemize[packed]}
     \xmlflush{#1}
   \stopitemize
 \stopxmlsetups

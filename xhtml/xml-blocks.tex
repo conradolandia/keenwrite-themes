@@ -33,20 +33,24 @@
   \stopquotation
 \stopxmlsetups
 
-% Paragraphs are followed by a paragraph break.
+% Paragraphs are followed by a paragraph break, but only if not nested.
 \startxmlsetups xml:p
-  \startparagraph
+  \xmldoifnotselfempty {#1} {
+    \dontleavehmode
+    \ignorespaces
     \xmlflush{#1}
-  \stopparagraph
+    \removeunwantedspaces
+  }
+  \par
 \stopxmlsetups
 
 % Define a start/stop environment for preformatted text.
 \definelines[preformatted]
 
 \startxmlsetups xml:pre
-  \startpreformatted
-    \xmlflush{#1}
-  \stoppreformatted
+  \startxmldisplayverbatim
+    \xmlflushspacewise{#1}
+  \stopxmldisplayverbatim
 \stopxmlsetups
 
 % Ensure that escaped entities and newlines are respected.

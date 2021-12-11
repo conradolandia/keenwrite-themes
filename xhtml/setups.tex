@@ -13,10 +13,15 @@
 
   % Meta information
   \xmlsetsetup{\xmldocument}{head}{xml:meta}
+
+  % Document information
   \xmlsetsetup{\xmldocument}{title}{xml:title}
 
   % Header elements
   \xmlsetsetup{\xmldocument}{h1|h2|h3}{xml:*}
+
+  % List elements
+  \xmlsetsetup{\xmldocument}{ul|ol|li|dl|dt|dd}{xml:*}
 
   % Block elements
   \xmlsetsetup{\xmldocument}{blockquote|div|p|pre}{xml:*}
@@ -31,9 +36,6 @@
   \xmlsetsetup{\xmldocument}{code}{xml:code}
   \xmlsetsetup{\xmldocument}{pre/code}{xml:pre:code}
   \xmlsetsetup{\xmldocument}{div[@class='limerick']/p}{xml:limerick}
-
-  % List elements
-  \xmlsetsetup{\xmldocument}{ul|ol|li|dl|dt|dd}{xml:*}
 
   % Break elements
   \xmlsetsetup{\xmldocument}{hr|br}{xml:*}
