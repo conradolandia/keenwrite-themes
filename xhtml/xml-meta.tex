@@ -4,6 +4,10 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+\startxmlsetups xml:setdocumentvariable
+   \setupdocument[\xmlatt{#1}{name}={\xmlatt{#1}{content}}]
+\stopxmlsetups
+
 \startxmlsetups xml:title
   \setupdocument[title={\xmlflush{#1}}]
   \setupdocument[metadata:title={\xmlflush{#1}}]
@@ -24,21 +28,5 @@
 
 \startxmlsetups xml:keywords
   \setupdocument[metadata:keywords={\xmlatt{#1}{content}}]
-\stopxmlsetups
-
-\startxmlsetups xml:address
-  \setupdocument[address={\xmlatt{#1}{content}}]
-\stopxmlsetups
-
-\startxmlsetups xml:phone
-  \setupdocument[phone={\xmlatt{#1}{content}}]
-\stopxmlsetups
-
-\startxmlsetups xml:email
-  \setupdocument[email={\xmlatt{#1}{content}}]
-\stopxmlsetups
-
-\startxmlsetups xml:wordcount
-  \setupdocument[words={\xmlatt{#1}{content}}]
 \stopxmlsetups
 

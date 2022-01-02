@@ -8,15 +8,14 @@
 \define\completecover
 
 \startxmlsetups xml:html
+  % General document variables are defined first.
+  \xmlfilter{#1}{/head/meta/command(xml:setdocumentvariable)}
+
+  % Modified "special" forms may override generalized forms.
   \xmlfilter{#1}{/head/title/command(xml:title)}
   \xmlfilter{#1}{/head/meta[@name='author']/command(xml:author)}
   \xmlfilter{#1}{/head/meta[@name='byline']/command(xml:byline)}
   \xmlfilter{#1}{/head/meta[@name='keywords']/command(xml:keywords)}
-
-  \xmlfilter{#1}{/head/meta[@name='address']/command(xml:address)}
-  \xmlfilter{#1}{/head/meta[@name='phone']/command(xml:phone)}
-  \xmlfilter{#1}{/head/meta[@name='email']/command(xml:email)}
-  \xmlfilter{#1}{/head/meta[@name='count']/command(xml:wordcount)}
 
   \xmlflush{#1}
 \stopxmlsetups
