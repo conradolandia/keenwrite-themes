@@ -6,27 +6,28 @@
 
 \startxmlsetups xml:title
   \setupdocument[title={\xmlflush{#1}}]
+  \setupdocument[metadata:title={\xmlflush{#1}}]
   \setupinteraction[title={\documentvariable{title}}]
 \stopxmlsetups
 
 \startxmlsetups xml:author
   \setupdocument[author={\xmlatt{#1}{content}}]
+  \setupdocument[metadata:author={\xmlatt{#1}{content}}]
   \setupinteraction[author={\documentvariable{author}}]
 \stopxmlsetups
 
 \startxmlsetups xml:byline
   \setupdocument[byline={\xmlatt{#1}{content}}]
+  \setupdocument[metadata:author={\xmlatt{#1}{content}}]
   \setupinteraction[author={\documentvariable{byline}}]
 \stopxmlsetups
 
-\startluacode
-function xml.functions.address( t )
-  context( t.at["content"] )
-end
-\stopluacode
+\startxmlsetups xml:keywords
+  \setupdocument[metadata:keywords={\xmlatt{#1}{content}}]
+\stopxmlsetups
 
 \startxmlsetups xml:address
-  \setupdocument[address={\xmlfunction{#1}{address}}]
+  \setupdocument[address={\xmlatt{#1}{content}}]
 \stopxmlsetups
 
 \startxmlsetups xml:phone
@@ -37,16 +38,7 @@ end
   \setupdocument[email={\xmlatt{#1}{content}}]
 \stopxmlsetups
 
-\startxmlsetups xml:byline
-  \setupdocument[byline={\xmlatt{#1}{content}}]
-  \setupinteraction[author={\documentvariable{byline}}]
-\stopxmlsetups
-
 \startxmlsetups xml:wordcount
   \setupdocument[words={\xmlatt{#1}{content}}]
-\stopxmlsetups
-
-\startxmlsetups xml:keywords
-  \setupdocument[metadata:keywords={\xmlatt{#1}{content}}]
 \stopxmlsetups
 
