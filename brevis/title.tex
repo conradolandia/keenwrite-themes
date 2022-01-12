@@ -4,13 +4,13 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\startsetups document:start
-  \startstandardmakeup
-    \startalignment[middle]
-      {\ss\tfc\documentvariable{title}}
-      \blank[medium]
-      \documentvariable{byline}
-    \stopalignment
-  \stopstandardmakeup
-\stopsetups
+% Customize the title page, ensure content starts on following page.
+% The default layout forces a blank page after the title page.
+\define\completecover{%
+  \startalignment[middle]
+    {\ss\tfc\documentvariable{title}}
+    \blank[medium]
+    \documentvariable{byline}
+  \stopalignment
+}
 

@@ -31,5 +31,10 @@
 \startsectionblockenvironment [bodypart]
   % Ensure the first chapter starts at 1 to match PDF page number.
   \setcounter [userpage] [1]
+
+  % After the TOC, put chapter titles on separate pages.
+  \setuphead[chapter][
+    after={\pagebreak\placeinitial},
+  ]
 \stopsectionblockenvironment
 
