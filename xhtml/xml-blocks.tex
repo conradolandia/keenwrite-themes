@@ -36,7 +36,6 @@
 % Paragraphs are followed by a paragraph break, but only if not nested.
 \startxmlsetups xml:p
   \xmldoifnotselfempty {#1} {
-    \dontleavehmode
     \ignorespaces
     \xmlflush{#1}
     \removeunwantedspaces
