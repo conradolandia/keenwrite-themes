@@ -6,8 +6,7 @@
 
 % Wraps text in a speech bubble.
 %
-% side -- controls whether the speech bubble is left- or right-facing. 
-%
+% @param side -- controls left-facing (0) or right-facing (1) bubble.
 \startuseMPgraphic{TextBubble}{side}
   z1 = (0, 0) ;
   z2 = (OverlayWidth, 0) ;
@@ -23,48 +22,48 @@
     tail := -1 ;
   fi
 
-  (offset/6)[x1,x2] = x8 + 1cm * tail = x7 + .5cm = x9 - .5cm ;
+  (offset/6)[x1,x2] = x8 + .25cm * tail = x7 + .25cm = x9 - .25cm ;
   y7 =  0cm ;
-  y8 = -1cm ;
+  y8 = -.5cm ;
   y9 =  0cm ;
 
   path p ;
   p = (z1--z7--z8--z9--z2--z3--z4--cycle) cornered .25cm ;
-  draw p withpen pencircle scaled 0.5 ;
+  draw p withpen pencircle scaled 0.75 ;
 
   setbounds currentpicture to OverlayBox ;
 \stopuseMPgraphic
 
-% Receive text (left-facing).
-\defineoverlay[TextBubbleRxOverlay][\useMPgraphic{TextBubble}{side=0}]
-\defineframedtext[TextBubbleRxFrame][
+% Receive and send text (common elements).
+\defineframedtext[TextBubbleFrame][
   frame=off,
-  background=TextBubbleRxOverlay,
   width=fit,
   offset=.75em,
+  after={\blank[2*big]},
+]
+
+% Receive text (left-facing).
+\defineoverlay[TextBubbleRxOverlay][\useMPgraphic{TextBubble}{side=0}]
+\defineframedtext[TextBubbleRxFrame][TextBubbleFrame][
+  background=TextBubbleRxOverlay,
   location=left,
-  after={\blank[1.25cm]},
 ]
 
 % Send text (right-facing).
 \defineoverlay[TextBubbleTxOverlay][\useMPgraphic{TextBubble}{side=1}]
-\defineframedtext[TextBubbleTxFrame][
-  frame=off,
+\defineframedtext[TextBubbleTxFrame][TextBubbleFrame][
   background=TextBubbleTxOverlay,
-  width=fit,
-  offset=.75em,
   location=right,
-  after={\blank[1.25cm]},
 ]
 
-% Map XHTML classes to start/stop environments.
+% Map XHTML class names to start/stop environments.
 \definestartstop[bubblerx][
-  before={\startTextBubbleRxFrame},
-  after={\stopTextBubbleRxFrame},
+  before={\startnarrower\startTextBubbleRxFrame},
+  after={\stopTextBubbleRxFrame\stopnarrower},
 ]
 
 \definestartstop[bubbletx][
-  before={\startTextBubbleTxFrame},
-  after={\stopTextBubbleTxFrame},
+  before={\startnarrower\startTextBubbleTxFrame},
+  after={\stopTextBubbleTxFrame\stopnarrower},
 ]
 
