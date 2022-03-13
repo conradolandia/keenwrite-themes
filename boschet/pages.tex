@@ -14,12 +14,42 @@
 \setuppagenumbering[
   alternative=singlesided,
   location={footer,right},
+  style=\ss,
 ]
 
 % Conditionally set the page chapter title because the TOC suppresses it.
 \define\TextHeaderChapter{%
   \doiftextelse{\getmarking[chapter]}%
   {\ss{\getmarking[chapter]}}%
+  {}%
+}
+
+% Counts the number of words processed.
+\definenumber[TextWordCount][]
+\setnumber[TextWordCount][0]
+
+% Process only the first two words within some text.
+%
+% #1 - A word in the text being processed.
+\def\processword#1{%
+  % Output only two words.
+  \ifnum\rawcountervalue[TextWordCount]<3#1\fi%
+  \incrementnumber[TextWordCount]%
+  \nospace
+}
+
+% Resets the word count when processing some text.
+%
+% #1 - Text to process.
+\define[1]\TextProcessWords{%
+  \setnumber[TextWordCount][0]%
+  \processwords{#1}%
+}
+
+% Outputs a subset of words from the subsection.
+\define\TextHeaderSubsection{%
+  \doiftextelse{\getmarking[subsection]}%
+  {\ss{\TextProcessWords{\getmarking[subsection]}}}%
   {}%
 }
 
@@ -30,6 +60,6 @@
 }
 
 \setupheadertexts
-  [\TextHeaderChapter][\TextHeaderTitle]
-  [\TextHeaderTitle][\TextHeaderChapter]
+  [\TextHeaderChapter][\TextHeaderSubsection]
+  [\TextHeaderSubsection][\TextHeaderChapter]
 
