@@ -1,0 +1,24 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure TODO texts.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\defineframedtext[TextTodo][
+  corner=round,
+  width=fixed,
+  rulethickness=1pt,
+  roffset=.5em,
+  framecolor=darkred,
+]
+
+% Map XHTML class names to start/stop environments.
+\definestartstop[todo][
+  before={\startTextTodo%
+    \startalignment[middle]%
+      \bf{\color[red]{TODO}}%
+    \stopalignment%
+  },
+  after={\stopTextTodo},
+]
+
