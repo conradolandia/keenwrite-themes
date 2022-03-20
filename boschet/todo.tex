@@ -4,20 +4,24 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\defineframedtext[TextTodo][
-  corner=round,
-  width=fixed,
-  rulethickness=1pt,
-  roffset=.5em,
+% Allow TODO to span pages.
+\definetextbackground[TextTodo][
+  location=paragraph,
+  background=off,
   framecolor=darkred,
+  corner=round,
+  rulethickness=1pt,
+  before=\blank,
+  after=\blank,
 ]
 
-% Map XHTML class names to start/stop environments.
+% Create an unmissable box with TODO at the top.
 \definestartstop[todo][
-  before={\startTextTodo%
-    \startalignment[middle]%
-      \bf{\color[red]{TODO}}%
-    \stopalignment%
+  before={\startTextTodo
+    \startalignment[middle]
+      \bf{\color[red]{TODO}}
+    \stopalignment
+    \blank[disable]
   },
   after={\stopTextTodo},
 ]
