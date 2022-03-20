@@ -13,6 +13,21 @@
   expansion=quality
 ]
 
+% Greek letters aren't defined by Baskerville, first try Source Serif Pro.
+% Source Serif Pro pairs well with Libre Baskerville in terms of font weight
+% and rounded accents. The rscale is found by direct letter comparisons.
+\definefallbackfamily [TextFont] [serif] [Source Serif Pro] [
+  range=greekandcoptic,
+  rscale=1.17
+]
+
+% If Source Serif Pro isn't installed, use Gentium Plus. It doesn't pair
+% as well as Source Serif Pro, but is a decent second choice.
+\definefallbackfamily [TextFont] [serif] [Gentium Plus] [
+  range=greekandcoptic,
+  rscale=1.2
+]
+
 \definefontfamily [TextFont] [rm] [LibreBaskerville] [features=TextFontFeature]
 \definefontfamily [TextFont] [ss] [Archivo Narrow]
 \definefontfamily [TextFont] [tt] [Inconsolata]
