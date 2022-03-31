@@ -58,12 +58,12 @@
 
 % Map XHTML class names to start/stop environments.
 \definestartstop[bubblerx][
-  before={\startnarrower\startTextBubbleRxFrame},
-  after={\stopTextBubbleRxFrame\stopnarrower},
+  before={\startnarrower\startTextBubbleRxFrame\TextFontEmoji\bgroup},
+  after={\egroup\stopTextBubbleRxFrame\stopnarrower},
 ]
 
 \definestartstop[bubbletx][
-  before={\startnarrower\startTextBubbleTxFrame},
-  after={\stopTextBubbleTxFrame\stopnarrower},
+  before={\startnarrower\startTextBubbleTxFrame\TextFontEmoji\bgroup},
+  after={\egroup\stopTextBubbleTxFrame\stopnarrower},
 ]
 
