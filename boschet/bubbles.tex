@@ -36,8 +36,10 @@
 
 % Receive and send text (common elements).
 \defineframedtext[TextBubbleFrame][
+  style=TextFontEmoji,
   frame=off,
-  width=fit,
+  width=.618\textwidth,
+  autowidth=force,
   offset=.75em,
   after={\blank[2*big]},
 ]
@@ -58,12 +60,12 @@
 
 % Map XHTML class names to start/stop environments.
 \definestartstop[bubblerx][
-  before={\startnarrower\startTextBubbleRxFrame\TextFontEmoji\bgroup},
-  after={\egroup\stopTextBubbleRxFrame\stopnarrower},
+  before={\startnarrower\startTextBubbleRxFrame},
+  after={\stopTextBubbleRxFrame\stopnarrower},
 ]
 
 \definestartstop[bubbletx][
-  before={\startnarrower\startTextBubbleTxFrame\TextFontEmoji\bgroup},
-  after={\egroup\stopTextBubbleTxFrame\stopnarrower},
+  before={\startnarrower\startTextBubbleTxFrame},
+  after={\stopTextBubbleTxFrame\stopnarrower},
 ]
 
