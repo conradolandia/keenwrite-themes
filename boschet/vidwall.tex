@@ -1,0 +1,12 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure simple text displayed on a video wall.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Center align text and offset with blank lines.
+\definestartstop[vidwall][
+  before={\blank\startalignment[middle]},
+  after={\stopalignment\blank},
+]
+
