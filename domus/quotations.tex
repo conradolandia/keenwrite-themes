@@ -8,9 +8,8 @@
 \define\TextQuotationAfter{\stopnarrower\blank}
 
 \setupdelimitedtext[quotation][
-  before=\TextQuotationBefore,
-  after=\TextQuotationAfter,
   repeat=yes,
-  middle={\symbol[leftquotation]},
+  spacebefore=1em,
+  before={\setupwhitespace[none]},
 ]
 
