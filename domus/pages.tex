@@ -1,0 +1,55 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure page layouts, including header and footer.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\setupmakeup[standard][
+  doublesided=no,
+]
+
+% http://wiki.contextgarden.net/Command/setuppagenumbering.
+\setuppagenumbering[
+  alternative=singlesided,
+  location={footer,right},
+  style=\ss,
+]
+
+% Conditionally set the page chapter title because the TOC suppresses it.
+\define\TextHeaderChapter{%
+  \doiftextelse{\getmarking[chapter]}%
+  {\ss{\getmarking[chapter]}}%
+  {}%
+}
+
+\define\TextHeaderFrame{%
+  \framed[
+    frame=off,
+    bottomframe=on,
+    framecolor=TextColourSecondary,
+    width=\textwidth,
+  ]
+}
+
+\define\TextFooterFrame{%
+  \framed[
+    frame=off,
+    topframe=on,
+    framecolor=TextColourSecondary,
+    width=\textwidth,
+    align=flushright,
+  ]
+}
+
+\setupheadertexts
+  [\TextHeaderFrame{\TextHeaderChapter\hfill{House Care Guide}}]
+  []
+  []
+  [\TextHeaderFrame{\TextHeaderChapter\hfill{House Care Guide}}]
+
+\setupfootertexts
+	[]
+	[{\TextFooterFrame{\pagenumber}}]
+	[{\TextFooterFrame{\pagenumber}}]
+	[]
+

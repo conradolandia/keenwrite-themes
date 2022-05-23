@@ -1,0 +1,19 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure bullet and enumerated lists
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definesymbol[TextBullet][•]
+
+% Reduce the spacing around bullets.
+\setupitemgroup[itemize][1][packed,paragraph][
+  leftmargin=1em,
+  distance=1em,
+  symbol=TextBullet,
+  color=TextColourLine,
+  symalign=flushright,
+  before=,
+  after=,
+]
+

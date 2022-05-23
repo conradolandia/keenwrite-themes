@@ -1,0 +1,49 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Title page configuration
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definelayer[CoverLayer][
+  position=no,
+  repeat=no,
+  width=\paperwidth,
+  height=\paperheight,
+]
+
+% The % symbols allow the image to fill the entire page, allow the cover
+% image to expand to fill the page. (Override the image size restriction.)
+\setlayer[CoverLayer][
+  x=0cm,
+  y=0cm,
+]{%
+  \externalfigure[cover.jpg][
+    maxwidth=\paperwidth,
+    maxheight=\paperheight,
+    width=\paperwidth,
+    height=\paperheight,
+  ]%
+}
+
+\setupmakeup[coverpage][
+  doublesided=no,
+  page=right,
+  headerstate=empty,
+  footerstate=empty,
+  before=\setups{cover:setups},
+]
+
+\startsetups cover:setups
+  \setupbackgrounds[page][background=CoverLayer]
+\stopsetups
+
+\define\completecover{%
+  \startalignment[middle]{%
+    \vfill%
+    \ssbfd%
+    \setupinterlinespace%
+    \color[TextColourTitle]{House Care Guide}
+  }%
+  \stopalignment
+}
+
