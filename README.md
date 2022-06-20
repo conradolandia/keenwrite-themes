@@ -5,6 +5,12 @@
 Document typesetting configurations that contain a variety of styles for
 changing the look and feel of documents.
 
+# Download
+
+Download the most recent theme pack:
+
+* [Download](https://github.com/DaveJarvis/keenwrite-themes/releases/latest/download/theme-pack.zip)
+
 # Creation
 
 All themes must conform to the following structure:
