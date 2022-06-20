@@ -13,6 +13,14 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+% Provide the ability to change foreground and background colours for
+% inline source code (typically monospace text).
+\defineframed[TextStyleCode][
+  frame=off,
+  foregroundstyle=\tt,
+  location=low,
+]
+
 \startxmlsetups xml:img
   \starttexcode
     \placefloat[here,force]{}{%
@@ -27,7 +35,7 @@
 \stopxmlsetups
 
 \startxmlsetups xml:code
-  \dontleavehmode{\tt\xmlflush{#1}}
+  \dontleavehmode{\TextStyleCode{\xmlflush{#1}}}
 \stopxmlsetups
 
 % Strong text is bolded, typically.
