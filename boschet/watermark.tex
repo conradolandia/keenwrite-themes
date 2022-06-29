@@ -1,27 +1,24 @@
-\definecolor[TextWatermarkColour][h=E9E9E9]
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure watermark.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\define\TextReviewerName{}
-\define\TextWatermark{}
+\definecolor[TextWatermarkColour][h=D8D8D8]
 
-% Uncomment lines to enable alpha reader watermark (right side of each page)
-%\define\TextReviewerName{First Last, name@host.com}
-%\define\TextWatermark{\rotate[rotation=-90]{Alpha copy for \TextReviewerName}}
+% Reference document variables through a setups environment.
+\startsetups TextReviewerName 
+% Use a frame to center vertically.
+\framed[frame=off]{%
+  \doifdocumentvariable{reviewer}{
+    \color[TextWatermarkColour]{%
+      \it
+      \rotate[rotation=-90]{Alpha copy for \documentvariable{reviewer}}
+    }
+  }
+}
+\stopsetups
 
-\definelayer[TextWatermarkLayer][
-  repeat=yes,
-  width=\rightmarginwidth
-]
-
-\setupbackgrounds[text][rightmargin][
-  background=TextWatermarkLayer,
-  state=start
-]
-
-\setlayerframed[TextWatermarkLayer][
-  frame=off,
-  foregroundcolor=TextWatermarkColour,
-  foregroundstyle=slanted,
-  width=\rightmarginwidth,
-  align={flushright},
-]{\TextWatermark}
+\defineoverlay[TextWatermarkOverlay][\setups{TextReviewerName}]
+\setupbackgrounds[text][rightmargin][background=TextWatermarkOverlay]
 
