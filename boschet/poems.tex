@@ -1,23 +1,39 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %
-% Configure various poem types.
-
+% Configure limericks.
+%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\definelines[TextPoemLimerick]
+\definecounter[TextPoemLimerickCount][way=bytext]
 
-\definestartstop[limerick][
-  before={\startTextPoemLimerick},
-  after={\stopTextPoemLimerick},
+\definedataset[TextPoemLimerickIndent]
+\setdataset[TextPoemLimerickIndent][2][option={yes, 2em}]
+\setdataset[TextPoemLimerickIndent][3][option={yes, 2em}]
+\setdataset[TextPoemLimerickIndent][4][option={yes, 0em}]
+\def\TextPoemLimerickIndentOpt{%
+  \datasetvariable
+    {TextPoemLimerickIndent}{\rawcountervalue[TextPoemLimerickCount]}{option}%
+}
+
+% Indent the entire limerick, including the first line.
+\definelines[TextPoemLimerick]
+\setuplines[TextPoemLimerick][
+  before={\setnumber[TextPoemLimerickCount][0]},
+  command={%
+    \incrementcounter[TextPoemLimerickCount]
+    \setupindenting[\TextPoemLimerickIndentOpt]
+  },
 ]
 
 \startxmlsetups xml:limerick
-  \startlines
-    % Indent the entire limerick, including the first line.
-    \setupindenting[yes, 1in, next, first]
+  \blank
 
-    % Respect newlines.
-    \em{\xmlflushlinewise{#1}}
-  \stoplines
+  \startTextPoemLimerick
+    \startnarrower[.5in]
+      \em{\xmlflushlinewise{#1}}
+    \stopnarrower
+  \stopTextPoemLimerick
+
+  \indentation
 \stopxmlsetups
 
