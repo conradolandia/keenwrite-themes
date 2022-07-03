@@ -18,7 +18,16 @@
 % Indent the entire limerick, including the first line.
 \definelines[TextPoemLimerick]
 \setuplines[TextPoemLimerick][
-  before={\setnumber[TextPoemLimerickCount][0]},
+  before={%
+    \setnumber[TextPoemLimerickCount][0]
+    \blank
+    \startnarrower[.5in]
+  },
+  after={%
+    \stopnarrower
+    \blank
+    \setupindenting[reset]
+  },
   command={%
     \incrementcounter[TextPoemLimerickCount]
     \setupindenting[\TextPoemLimerickIndentOpt]
@@ -26,14 +35,8 @@
 ]
 
 \startxmlsetups xml:limerick
-  \blank
-
   \startTextPoemLimerick
-    \startnarrower[.5in]
-      \em{\xmlflushlinewise{#1}}
-    \stopnarrower
+    \em{\xmlflushlinewise{#1}}
   \stopTextPoemLimerick
-
-  \indentation
 \stopxmlsetups
 

@@ -5,16 +5,16 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \definelines[TextPoemLyrics]
-\setuplines[TextPoemLyrics][indenting={even}]
+\setuplines[TextPoemLyrics][
+  before={\blank\startnarrower[.5in]},
+  after={\stopnarrower\blank\setupindenting[reset]},
+  indenting={even},
+]
 
 \startxmlsetups xml:lyrics
   \startTextPoemLyrics
-    \startnarrower[.5in]
-      % Respect newlines.
-      \em{\xmlflushlinewise{#1}}
-    \stopnarrower
+    % Respect newlines.
+    \em{\xmlflushlinewise{#1}}
   \stopTextPoemLyrics
-
-  \indentation
 \stopxmlsetups
 
