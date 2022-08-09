@@ -26,6 +26,8 @@
 
 \startxmlsetups xml:pre
   \startxmldisplayverbatim
+    % Strip superfluous blank lines before and after the code block.
+    \xmlstripnolines{#1}{.}
     \xmlflushspacewise{#1}
   \stopxmldisplayverbatim
 \stopxmlsetups
@@ -33,6 +35,7 @@
 % Ensure that escaped entities and newlines are respected.
 \startxmlsetups xml:pre:code
   \startxmldisplayverbatim
+    \setupindenting[medium, yes]
     \xmlflushspacewise{#1}
   \stopxmldisplayverbatim
 \stopxmlsetups

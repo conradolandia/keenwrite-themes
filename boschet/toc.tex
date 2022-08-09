@@ -6,6 +6,7 @@
 
 % Set up Roman numerals for the TOC.
 \definestructureconversionset[frontpart:pagenumber][][romannumerals]
+\definestructureconversionset[bodypart:pagenumber][][numbers]
 
 \setuplist[chapter][pageconversionset=pagenumber]
 
@@ -25,16 +26,18 @@
 
 \startsectionblockenvironment[frontpart]
   % Ensure the ToC starts at iii to match PDF page number.
-  \setcounter [userpage] [2]
+  \setupuserpagenumber[numberconversion=romannumerals]
+  \setuppagenumber[number=3]
 \stopsectionblockenvironment
 
 \startsectionblockenvironment [bodypart]
   % Ensure the first chapter starts at 1 to match PDF page number.
-  \setcounter [userpage] [1]
+  \setuppagenumber[number=1]
 
   % After the TOC, put chapter titles on separate pages.
   \setuphead[chapter][
     after={\pagebreak\placeinitial},
+    footer=empty,
   ]
 \stopsectionblockenvironment
 

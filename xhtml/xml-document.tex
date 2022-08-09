@@ -17,10 +17,6 @@
   \xmlfilter{#1}{/head/meta[@name='byline']/command(xml:byline)}
   \xmlfilter{#1}{/head/meta[@name='keywords']/command(xml:keywords)}
 
-  \xmlflush{#1}
-\stopxmlsetups
-
-\startxmlsetups xml:body
   \startdocument
     % Allow detection of the cover page using the userpage variable.
     \setcounter [userpage] [0]
@@ -28,14 +24,18 @@
       \completecover
     \stopcoverpagemakeup
 
-    \setcounter [userpage] [1]
+    \setcounter [userpage] [2]
     \startfrontmatter
       \completecontent
     \stopfrontmatter
 
-    \startbodymatter
-      \xmlflush{#1}
-    \stopbodymatter
+    \xmlflush{#1}
   \stopdocument
+\stopxmlsetups
+
+\startxmlsetups xml:body
+  \startbodymatter
+    \xmlflush{#1}
+  \stopbodymatter
 \stopxmlsetups
 

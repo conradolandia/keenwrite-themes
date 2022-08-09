@@ -10,18 +10,27 @@
   doublesided=no
 ]
 
-% http://wiki.contextgarden.net/Command/setuppagenumbering.
-\setuppagenumbering[
-  alternative=singlesided,
-  location={footer,right},
-  style=\ss,
-]
+\definemakeup[coverpage]
+\define\completecover
+
+% Custom footer setups (below) includes page number.
+\setuppagenumbering[location=none]
+
+\define\TextHeaderChapterFull{%
+  \ss{%
+    \getmarking[chapternumber][current]%
+    \hspace%
+    \vl%
+    \hspace%
+    \getmarking[chapter]%
+  }%
+}
 
 % Conditionally set the page chapter title because the TOC suppresses it.
 \define\TextHeaderChapter{%
-  \doiftextelse{\getmarking[chapter]}%
-  {\ss{\getmarking[chapter]}}%
-  {}%
+  \doiftextelse{\TextHeaderChapterFull}%
+    {\TextHeaderChapterFull}%
+    {}%
 }
 
 % Counts the number of words processed.
@@ -59,7 +68,15 @@
   {}%
 }
 
+\define\TextFooterTitle{%
+  \ss{\documentvariable{title}}
+}
+
 \setupheadertexts
   [\TextHeaderChapter][\TextHeaderSubsection]
   [\TextHeaderSubsection][\TextHeaderChapter]
+
+\setupfootertexts
+  [\TextFooterTitle][\ss{\userpagenumber}]
+  [\ss{\userpagenumber}][\TextFooterTitle]
 
