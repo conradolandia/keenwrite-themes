@@ -4,6 +4,23 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+\startluacode
+userdata = userdata or {}
+
+userdata.TextReplacements = {}
+
+local function TextReplacement( text )
+  context( lpeg.replacer( userdata.TextReplacements ):match( text ) )
+end
+
+interfaces.implement {
+  name      = "TextReplacement",
+  arguments = { "string" },
+  public    = true,
+  actions   = TextReplacement,
+}
+\stopluacode
+
 % Indented quotations.
 \startxmlsetups xml:blockquote
   \startblockquote
@@ -15,7 +32,7 @@
 \startxmlsetups xml:p
   \xmldoifnotselfempty {#1} {
     \ignorespaces
-    \xmlflush{#1}
+    \expandafter\TextReplacement{\xmlflush{#1}}
     \removeunwantedspaces
   }
   \par
