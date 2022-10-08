@@ -8,6 +8,9 @@
 \define\completecover
 
 \startxmlsetups xml:html
+  % Introduce small space around guillemet double quotation marks.
+  \setup[guillemet]
+
   % Generalzed forms of document variables are defined first.
   \xmlfilter{#1}{/head/meta/command(xml:setdocumentvariable)}
 

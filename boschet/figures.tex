@@ -4,6 +4,7 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+% Ensures figures fill the page width without exceeding page bounds.
 \setupexternalfigures[
   order={svg,pdf,png},
   location={local,default,global},
@@ -13,16 +14,20 @@
   frameoffset=.5em,
   maxwidth=\makeupwidth,
   width=\makeupwidth,
+  factor=fit,
 ]
 
+% No captions.
 \setupcaptions[
   location=none,
 ]
 
+% Force cover page to fill the entire page.
 \defineoverlay[cover][{
   \externalfigure[cover.png][
     scale=2000,
     maxwidth=\paperwidth,
+    factor=,
   ]
 }]
 

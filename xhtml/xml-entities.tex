@@ -8,7 +8,20 @@
 \xmltexentity{ldquo}{\symbol[leftquotation]{}}
 \xmltexentity{rdquo}{\symbol[rightquotation]{}}
 \xmltexentity{rsquo}{\quotesingle{}}
+\xmltexentity{laquo}{«}
+\xmltexentity{raquo}{»}
+\xmltexentity{lsaquo}{«}
+\xmltexentity{rsaquo}{»}
+\xmltexentity{8222}{\symbol[quotedblbase]{}}
 \xmltexentity{mdash}{\emdash{}}
 \xmltexentity{ndash}{\endash{}}
 \xmltexentity{hellip}{\dots{}}
+
+\definecharacterspacing [guillemet]
+\setupcharacterspacing [guillemet] ["00AB] [right=.1, alternative=1]
+\setupcharacterspacing [guillemet] ["00BB] [left=.1, alternative=1]
+
+\startsetups[guillemet]
+  \setcharacterspacing[guillemet]
+\stopsetups
 
