@@ -4,22 +4,35 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\xmltexentity{apos}{’}
+% Curl apostrophes
+\definefontfeature[default][default][trep=yes]
+
+% Starting and ending quotations
 \xmltexentity{ldquo}{\symbol[leftquotation]{}}
 \xmltexentity{rdquo}{\symbol[rightquotation]{}}
-\xmltexentity{rsquo}{\quotesingle{}}
+\xmltexentity{lsquo}{‘}
+\xmltexentity{rsquo}{’}
+
+% Starting and ending internationalized quotations
 \xmltexentity{laquo}{«}
 \xmltexentity{raquo}{»}
-\xmltexentity{lsaquo}{«}
-\xmltexentity{rsaquo}{»}
+\xmltexentity{lsaquo}{‹}
+\xmltexentity{rsaquo}{›}
+
+% Opening low double quote
 \xmltexentity{ldquor}{\quotedblbase{}}
+
+% Dashes (--, ---) and ellipses (...)
 \xmltexentity{mdash}{\emdash{}}
 \xmltexentity{ndash}{\endash{}}
 \xmltexentity{hellip}{\dots{}}
 
+% Add padding around the guillemets
 \definecharacterspacing [guillemet]
-\setupcharacterspacing [guillemet] ["00AB] [right=.1, alternative=1]
-\setupcharacterspacing [guillemet] ["00BB] [left=.1, alternative=1]
+\setupcharacterspacing  [guillemet] ["00AB] [right=.1, alternative=1]
+\setupcharacterspacing  [guillemet] ["00BB] [left=.1, alternative=1]
+\setupcharacterspacing  [guillemet] ["2039] [right=.1, alternative=1]
+\setupcharacterspacing  [guillemet] ["203A] [left=.1, alternative=1]
 
 \startsetups[guillemet]
   \setcharacterspacing[guillemet]
