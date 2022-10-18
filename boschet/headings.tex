@@ -18,18 +18,20 @@
   n := \somenamedheadnumber{chapter}{current};
   width := BackSpace;
 
-  if n > 0 :
-    if unknown ChapterPageDone[n] :
-      fill (0,0) -- (width,0) -- (width, PaperHeight) -- (0, PaperHeight) -- cycle
-      withcolor \MPcolor{black};
-      ChapterPageDone[n] := 1 ;
+  if n > 0:
+    if unknown ChapterPageDone[n]:
+      fill
+        (0,0) -- (width,0) -- (width, PaperHeight) -- (0, PaperHeight) -- cycle
+        withcolor \MPcolor{TextColourTertiaryDk};
+
+      ChapterPageDone[n] := 1;
     fi;
   fi;
   StopPage;
 \stopuseMPgraphic
 
-\defineoverlay[TextChapterGraphic][\useMPgraphic{TextChapterGraphic}]
-\setupbackgrounds[page][background=TextChapterGraphic]
+\defineoverlay[TextChapterOverlay][\useMPgraphic{TextChapterGraphic}]
+\setupbackgrounds[page][background={TextChapterOverlay,HexGridBaseOverlay}]
 
 \define[1]\TextChapterNumber{%
   \inmargin{\TextFontChapter{\color[white]{#1}}}
@@ -37,6 +39,7 @@
 
 % Chapter titles left-justified, unhyphenated, and force word wrap (broad).
 \setuphead[chapter][
+  textcolor=TextColourTertiaryDk,
   style=TextFontChapter,
   header=empty,
   deepnumbercommand=\TextChapterNumber,

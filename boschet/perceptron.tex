@@ -1,0 +1,354 @@
+\definecolor[HexGridBase][h=EEEEEE]
+\definecolor[HexGridNode][h=202020]
+\definecolor[HexGridEdge][h=B0B0B0]
+
+\startluacode
+  require "Graph"
+
+  -- Try to generate a different tree each run.
+  math.randomseed( math.modf( os.clock() * 10000000 ), os.time() )
+
+  userdata = userdata or {}
+  ud = userdata
+
+  -- Create a minimally spanning acyclic graph that's connected (mostly).
+  --
+  -- @param r - numeric - The number of rows
+  -- @param c - numeric - The number of columns
+  -- @param m - numeric - The number of edges
+  --
+  -- @return A handle to the tree instance.
+  function tree( r, c, m )
+    local graph = Graph:new()
+    local edges = graph:connected( r, c, m )
+    local source = edges[ math.random( #edges ) ]
+    local tree = graph:compute( source )
+
+    return tree
+  end
+
+  -- Extract the first pair of a vertex at the given index inside the tree.
+  -- No error checking is performed.
+  --
+  -- @param graph - object - The tree containing numerous edges.
+  -- @param index - non-negative integer - The index for the vertex pair.
+  --
+  -- @return The (x, y) pair for the first vertex comprising an edge.
+  function ud.vertex_a( graph, index )
+    u = graph[ index ].u
+    return { u.x, u.y }
+  end
+  
+  -- Extract the second pair of a vertex at the given index inside the tree.
+  -- No error checking is performed.
+  --
+  -- @param graph - object - The tree containing numerous edges.
+  -- @param index - non-negative integer - The index for the vertex pair.
+  --
+  -- @return The (x, y) pair for the second vertex comprising an edge.
+  function ud.vertex_b( graph, index )
+    v = graph[ index ].v
+    return { v.x, v.y }
+  end
+  
+  -- Return the number of edges in the tree.
+  --
+  -- @param graph - object - The tree containing numerous nodes.
+  --
+  -- @return The number of vertex pairs in the tree.
+  function ud.count( graph )
+    return #graph
+  end
+\stopluacode
+
+\startMPinclusions
+  % Calculate arctangent between two points.
+  vardef atantwo( expr ax, ay, bx, by ) =
+    save theta;
+
+    dx := bx - ax;
+    dy := by - ay;
+    theta := 0;
+
+    if (dx > 0):
+      theta := atan( dy / dx );
+    elseif (dx < 0) and (dy >= 0):
+      theta := atan( dy / dx ) + pi;
+    elseif (dx < 0) and (dy < 0):
+      theta := atan( dy / dx ) - pi;
+    elseif (dx == 0) and (dy > 0):
+      theta := pi / 2;
+    elseif (dx == 0) and (dy < 0):
+      theta := -pi / 2;
+    fi;
+
+    theta
+  enddef;
+
+  % Convert radians to degrees.
+  vardef degrees( expr rad ) =
+    rad * 180 / pi
+  enddef;
+
+  % Calculate distance between two points.
+  vardef distance( expr ax, ay, bx, by ) =
+    sqrt( ((bx - ax)^2) + ((by - ay)^2) )
+  enddef;
+
+  numeric ChapterVisited[];
+\stopMPinclusions
+
+\startuseMPgraphic{HexGridBaseGraphic}{cols, rows, ways, zoom}
+  % Number of hexagons from top to bottom.
+  GRID_C := \MPvar{cols};
+
+  % Number of hexagons from left to right.
+  GRID_R := \MPvar{rows};
+
+  % Number of pathways between nodes (higher is more complexity).
+  PATHWAYS := \MPvar{ways};
+
+  % Grid zoom level (smaller is further away).
+  SCALE := \MPvar{zoom};
+
+  % Hexagon dimensions.
+  HEIGHT  := sqrt( 3 );
+  HHEIGHT := HEIGHT / 2;
+  WIDTH   := 2;
+
+  color colour_base;
+  color colour_node;
+  color colour_edge;
+
+  colour_base := \MPcolor{HexGridBase};
+  colour_node := \MPcolor{HexGridNode};
+  colour_edge := \MPcolor{HexGridEdge};
+
+  % Vertex diameters proportional to the hexagon height.
+  vertex_sm := HEIGHT / 12;
+  vertex_lg := HEIGHT / 5;
+
+  path path_ul, path_ur, path_tp;
+
+  path_ur := dir( 60 * 0 ) -- dir( 60 * 1 );
+  path_tp := dir( 60 * 1 ) -- dir( 60 * 2 );
+  path_ul := dir( 60 * 2 ) -- dir( 60 * 3 );
+
+  picture hexgrid;
+  picture vertices;
+  picture perceptrons;
+  picture connections;
+
+  hexgrid := nullpicture;
+  vertices := nullpicture;
+  perceptrons := nullpicture;
+  connections := nullpicture;
+
+  % Line width.
+  pickup pencircle scaled .05bp;
+
+  addto hexgrid also image(
+    for c = 1 upto GRID_C:
+      for r = 1 upto GRID_R:
+        offset_c := c * 3 / WIDTH;
+        offset_r := r * HEIGHT - (c mod 2 * HHEIGHT);
+
+        draw path_ul shifted (offset_c, offset_r) withcolor colour_base;
+        draw path_tp shifted (offset_c, offset_r) withcolor colour_base;
+        draw path_ur shifted (offset_c, offset_r) withcolor colour_base;
+
+        for i = 0 upto 2:
+          addto vertices also image(
+            draw
+              point i of path_tp
+              shifted (offset_c, offset_r)
+              withcolor colour_base
+              withpen pencircle
+              scaled vertex_sm;
+          );
+        endfor;
+      endfor;
+    endfor;
+  );
+
+  % Create the perceptron matrix.
+  lua( "ud.graph = tree( " &
+    decimal( GRID_C ) &
+    ", " &
+    decimal( GRID_R ) &
+    ", " &
+    decimal( PATHWAYS ) &
+    ")"
+  );
+
+  edges := lua( "ud.count( ud.graph )" );
+
+  for i := 1 upto edges:
+    lua( "va = ud.vertex_a( ud.graph, " & decimal( i ) & ")" );
+    lua( "vb = ud.vertex_b( ud.graph, " & decimal( i ) & ")" );
+
+    vac := lua( "va[1]" );
+    var := lua( "va[2]" );
+    vbc := lua( "vb[1]" );
+    vbr := lua( "vb[2]" );
+
+    offset_ac := vac * 3 / WIDTH;
+    offset_ar := var * HEIGHT - (vac mod 2 * HHEIGHT);
+    offset_bc := vbc * 3 / WIDTH;
+    offset_br := vbr * HEIGHT - (vbc mod 2 * HHEIGHT);
+
+    % Draw large nodes at the starting/ending coordinates.
+    addto perceptrons also image(
+      draw (offset_ac, offset_ar)
+        withcolor colour_node
+        withpen pencircle
+        scaled vertex_lg;
+
+      draw (offset_bc, offset_br)
+        withcolor colour_node
+        withpen pencircle
+        scaled vertex_lg;
+    );
+
+    addto perceptrons also image(
+      numeric vangle;
+      numeric vc, vr;
+      numeric sc, sr;
+
+      vi := round( degrees( atantwo( vac, var, vbc, vbr ) ) / 60 );
+
+      % Compute direction towards the first segment (to vertex of an edge).
+      vangle := vi * 60 * pi / 180;
+
+      % Calculate the position of the first vertex, offset from the center.
+      vc := offset_ac + cos( vangle );
+      vr := offset_ar + sin( vangle );
+
+      % Draw a line from the starting point to the subsequent vertex.
+      addto connections also image(
+        draw (offset_ac, offset_ar) -- (vc, vr)
+          withcolor colour_edge;
+      );
+
+      % Counts the number of connected edges.
+      iterations := 1;
+
+      forever:
+        % Draw a circle at the vertex, randomly sized.
+        draw (vc, vr)
+          withcolor colour_node
+          withpen pencircle
+          scaled
+            if round( uniformdeviate( 3 ) ) = 0: vertex_lg else: vertex_sm; fi;
+
+        %  2  _   1
+        %  3 / \  0
+        % -2 \_/ -1
+        %
+        % Determine the next vertex based on smallest angle of the
+        % three possible vertices with respect to the line.
+        start := if (vi mod 2) == 1: -1 else: -2 fi;
+
+        % Ensure that at least one vertex will be selected.
+        nearest := infinity;
+
+        % Select (s) the shortest distance (d) between the ending point and the
+        % next (n) vertex (v).
+        for k = start step 2 until 3:
+          kangle := k * 60 * pi / 180;
+
+          nc := vc + cos( kangle );
+          nr := vr + sin( kangle );
+          d := distance( offset_bc, offset_br, nc, nr );
+
+          if d < nearest:
+            nearest := d;
+            sc := nc;
+            sr := nr;
+
+            % Moving between hexagon vertices "rotates" the vertex triad.
+            vi := k + 1;
+          fi;
+        endfor;
+
+        d := distance( offset_bc, offset_br, sc, sr );
+        iterations := iterations + 1;
+
+        if (d <= 1) and (iterations > 2) and (iterations mod 2 = 0):
+          draw (sc, sr)
+            withcolor colour_node
+            withpen pencircle
+            scaled vertex_sm;
+        fi;
+
+        exitif (d <= 1);
+
+        addto connections also image(
+          draw (vc, vr) -- (sc, sr)
+            withcolor colour_edge
+            withpen pencircle
+            scaled 0.05bp;
+        );
+
+        vc := sc;
+        vr := sr;
+      endfor;
+
+      % Doesn't always draw the last selected vertex, not sure why.
+      if (d < 1) and (iterations > 2):
+        draw (sc, sr)
+          withcolor colour_node
+          withpen pencircle
+          scaled vertex_sm;
+      fi;
+
+      addto connections also image(
+        draw (offset_bc, offset_br) -- (vc, vr)
+          withcolor colour_edge
+          withpen pencircle
+          scaled 0.05bp;
+      );
+    );
+  endfor;
+
+  numeric chapter_number;
+  chapter_number := \somenamedheadnumber{chapter}{current};
+
+  if (chapter_number > 0) and (unknown ChapterVisited[chapter_number]):
+    draw image(
+      draw hexgrid;
+      draw vertices;
+      draw connections;
+      draw perceptrons;
+    ) scaled SCALE;
+
+    ChapterVisited[chapter_number] := 1;
+  fi;
+\stopuseMPgraphic
+
+% Default complexity for perceptron hexagonal matrix.
+\setupMPvariables[HexGridBaseGraphic][
+  cols=11,
+  rows=9,
+  ways=15,
+  zoom=25,
+]
+
+\defineoverlay[HexGridBaseOverlay][
+  \define\TextChapter{\somenamedheadnumber{chapter}{current}}
+
+  % Increase complexity as chapter number increases. Scale down the
+  % graphic as the grid size increases.
+  \define\HexCols{\numexpr (7 + \TextChapter) / 2 \relax}
+  \define\HexRows{\numexpr (7 + \TextChapter) / 2 \relax}
+  \define\HexWays{\numexpr (\TextChapter * (\TextChapter / 4)) + 4 \relax}
+  \define\HexZoom{\numexpr (18 - \TextChapter) + 17 \relax}
+
+  \useMPgraphic{HexGridBaseGraphic}{
+    cols=\HexCols,
+    rows=\HexRows,
+    ways=\HexWays,
+    zoom=\HexZoom,
+  }
+]
+
