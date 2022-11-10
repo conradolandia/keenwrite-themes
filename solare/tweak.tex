@@ -1,0 +1,15 @@
+\def\BookTextTitle{Preliminary Software Estimates}
+
+\setupinteraction[
+  title={\BookTextCompanyName - \BookTextTitle},
+  author={\BookTextAuthor},
+  subtitle={\BookTextSubtitle},
+  keyword={software, design, specifications, architecture, solar},
+]
+
+\def\insertestimate{%
+  \setuppapersize[A4,landscape]
+  \blank[big]
+  \filterpages[preliminary.pdf][1]
+  \setuppapersize[A4,portrait]
+}

@@ -1,0 +1,42 @@
+\input constants
+\input properties
+
+\input colours
+\input fonts
+\input paper
+\input pages
+\input layouts
+\input hyperlinks
+\input toc
+
+\input figures
+\input tables
+\input headings
+\input lists
+\input descriptions
+
+% Customizations based on the document type (e.g., design, report)
+\input tweak
+
+\setuplist[chapter][style={\BookColourBody}]
+\setuplist[section][style={\BookColourBody}]
+\setuplist[subsection][style={\BookColourBody}]
+
+\starttext
+  \input cover
+
+	% No page number on the title page; start from the ToC.
+	\setupbackgrounds[page][
+		background=BookPageLayer,
+		setups=BookHeaderFooterSetups,
+	]
+
+  \startfrontmatter
+    \completecontent
+  \stopfrontmatter
+
+  \startbodymatter
+    \input body
+  \stopbodymatter
+\stoptext
+

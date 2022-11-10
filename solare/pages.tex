@@ -1,0 +1,72 @@
+\setuppagenumbering[
+  alternative=singlesided,
+  location=,
+]
+
+\definestructureconversionset[frontpart:pagenumber] [] [romannumerals]
+
+\define\BookSeparator{{\BookColourBodyLight~~•~~}}
+
+% Empty headers.
+\setupheadertexts[\BookTextCompanyName{}\BookSeparator\BookTextTitle{}\BookSeparator\namedstructurevariable{chapter}{title}]
+
+\setupfootertexts[]
+
+\definelayer[BookPageLayer][
+  width=\paperwidth,
+  height=\paperheight,
+]
+
+\definemeasure[BookLogoHeight][
+  \dimexpr .75\footerheight \relax
+]
+
+\definelayerpreset[middlebottom][
+  corner={bottom}, location={middle}
+]
+
+\startsetups BookHeaderFooterSetups
+  % Place the icon in the top right.
+  \setlayerframed[BookPageLayer][
+    preset=lefttop,
+    % Give the icon whitespace in the corner.
+    y=2ex,
+  ][
+    frame=off,
+    width=5em,
+    height=\footerheight,
+  ]{\externalfigure[icon][height=\measure{BookLogoHeight}]}
+
+  % Place footer text below the footer margin, flush with the page number.
+  \setlayerframed[BookPageLayer][
+    preset=middlebottom,
+    x=.5\paperwidth,
+    y=4.4em,
+  ][
+    frame=off,
+  ]{%
+    \tfx
+    \href{\BookTextCompanyName}{https://sepisolar.com}\BookSeparator
+    \phone{\BookTextCompanyAddressPhone}\BookSeparator
+    \email{\BookTextCompanyAddressEmail}\BookSeparator
+    \BookTextCompanyAddressPostal
+  }
+
+  % Place the page number in the bottom left.
+  \setlayerframed[BookPageLayer][
+    preset=rightbottom,
+  ][
+    frame=off,
+    foreground=color,
+    foregroundcolor=white,
+    background=color,
+    backgroundcolor=BookColourHighlight,
+    width=7em,
+    height=\footerheight,
+  ]{\bold\BookFontSection\userpagenumber}
+\stopsetups
+
+\setupmakeup[standard][
+  pagestate=start,
+]
+

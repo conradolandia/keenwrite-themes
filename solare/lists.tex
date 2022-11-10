@@ -1,0 +1,31 @@
+\defineframed[BookBulletFrame] [
+  frame=off,
+  background=color,
+  backgroundcolor=BookColourHighlight,
+  width=.5em,
+  height=\framedparameter{width},
+]
+
+\definesymbol[BookBulletSymbol][
+  {\BookBulletFrame{\strut}}
+]
+
+% Indent enumerated lists and give number the highlight colour.
+\setupitemgroup[itemize][1][n][
+  leftmargin=1em,
+  color=BookColourHighlight,
+]
+
+% Indent itemized lists and give bullet lists a square style.
+% Order matters, this must come after the enumerated list.
+\setupitemize[1][broad][
+  leftmargin=1em,
+  symbol=BookBulletSymbol,
+]
+
+\definesymbol[BookBulletSymbol2][{\BookColourBodyLight\bullet}]
+
+\setupitemize[2][broad][
+  symbol=BookBulletSymbol2,
+]
+

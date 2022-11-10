@@ -1,0 +1,47 @@
+% Set up the body and heading fonts.
+\starttypescript [serif] [BookFontBody]
+  \definefontsynonym[Serif]
+    [name:calibriregular]
+    [features=default]
+  \definefontsynonym[SerifBold]
+    [name:calibribold]
+    [features=default]
+  \definefontsynonym[SerifItalic]
+    [name:calibriitalic]
+    [features=default]
+  \definefontsynonym[SerifBoldItalic]
+    [name:calibribolditalic]
+    [features=default]
+\stoptypescript
+
+\starttypescript [sans] [BookFontHeading]
+  \definefontsynonym[Sans]
+    [name:bryantproregular]
+    [features=default]
+  \definefontsynonym[SansBold]
+    [name:bryantprobold]
+    [features=default]
+  \definefontsynonym[SansLight]
+    [name:bryantprolight]
+    [features=default]
+  \definefontsynonym[SansRegular]
+    [name:bryantproregular]
+    [features=default]
+\stoptypescript
+
+\definetypeface[BookFont] [rm] [serif] [BookFontBody]    [default]
+\definetypeface[BookFont] [ss] [sans]  [BookFontHeading] [default]
+\definetypeface[BookFont] [mm] [math]  [schola]          [default] [rscale=auto]
+\definetypeface[BookFont] [tt] [mono]  [cursor]          [default] [rscale=0.85]
+
+\usetypescript[BookFont]
+\setupbodyfont[BookFont]
+
+% Equate \it with \em
+\setupbodyfontenvironment[default][em=italic]
+
+% Font sizes for chapter heading and chapter number.
+\definefont[BookFontChapter][SansRegular sa 2.5]
+\definefont[BookFontSection][SansRegular sa 1.75]
+\definefont[BookFontSubsection][SansRegular sa 1.25]
+
