@@ -1,0 +1,20 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure lyrics.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definelines[TextPoemLyrics]
+\setuplines[TextPoemLyrics][
+  before={\blank\startnarrower[.5in]},
+  after={\stopnarrower\blank\setupindenting[reset]},
+  indenting={even},
+]
+
+\startxmlsetups xml:lyrics
+  \startTextPoemLyrics
+    % Respect newlines.
+    \em{\xmlflushlinewise{#1}}
+  \stopTextPoemLyrics
+\stopxmlsetups
+

@@ -24,6 +24,10 @@
 % Allow line-breaking at naturally-hyphenated words.
 \setbreakpoints[compound]
 
+% Prevent em-dash and en-dash from collapsing into a Unicode character.
+% Must take place after disabling hyphenation within the alignment setup.
+\nohyphencollapsing
+
 \setuptolerance[
   extremestretch,
   verytolerant,
