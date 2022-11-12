@@ -7,8 +7,8 @@
 \define\TextBackgrounds{%
   % No page number on the title page; start from the ToC.
   \setupbackgrounds[page][
-    background=BookPageLayer,
-    setups=BookHeaderFooterSetups,
+    background=TextPageLayer,
+    setups=TextHeaderFooterSetups,
   ]
 }
 
@@ -26,12 +26,12 @@
 
 \setupfootertexts[]
 
-\definelayer[BookPageLayer][
+\definelayer[TextPageLayer][
   width=\paperwidth,
   height=\paperheight,
 ]
 
-\definemeasure[BookLogoHeight][
+\definemeasure[TextLogoHeight][
   \dimexpr .75\footerheight \relax
 ]
 
@@ -39,9 +39,9 @@
   corner={bottom}, location={middle}
 ]
 
-\startsetups BookHeaderFooterSetups
+\startsetups TextHeaderFooterSetups
   % Place the icon in the top right.
-  \setlayerframed[BookPageLayer][
+  \setlayerframed[TextPageLayer][
     preset=lefttop,
     % Give the icon whitespace in the corner.
     y=2ex,
@@ -49,10 +49,10 @@
     frame=off,
     width=5em,
     height=\footerheight,
-  ]{\externalfigure[images/icon][height=\measure{BookLogoHeight}]}
+  ]{\externalfigure[images/icon][height=\measure{TextLogoHeight}]}
 
   % Place footer text below the footer margin, flush with the page number.
-  \setlayerframed[BookPageLayer][
+  \setlayerframed[TextPageLayer][
     preset=middlebottom,
     x=.5\paperwidth,
     y=4.4em,
@@ -60,14 +60,14 @@
     frame=off,
   ]{%
     \tfx
-    \href{\TextCompanyName}{https://sepisolar.com}\TextSeparator
+    \href{\TextCompanyName}{\TextCompanyAddressWebsite}\TextSeparator
     \phone{\TextCompanyAddressPhone}\TextSeparator
     \email{\TextCompanyAddressEmail}\TextSeparator
     \TextCompanyAddressPostal
   }
 
   % Place the page number in the bottom left.
-  \setlayerframed[BookPageLayer][
+  \setlayerframed[TextPageLayer][
     preset=rightbottom,
   ][
     frame=off,

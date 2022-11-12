@@ -1,6 +1,26 @@
-\def\TextTitle{High-level Software Design}
-\def\TextCompanyName{SepiSolar}
-\def\TextCompanyAddressPostal{3070 Osgood CT, Fremont, CA 94539}
-\def\TextCompanyAddressPhone{510-940-9750}
-\def\TextCompanyAddressEmail{hello@sepisolar.com}
+\define\TextTitle{
+  \doifdocumentvariableelse{title}{\documentvariable{title}}{False}
+}
+
+\define\TextCompanyName{
+  \doifdocumentvariableelse{company}{\documentvariable{company}}{Company}
+}
+
+\define\TextCompanyAddressWebsite{
+  \doifdocumentvariableelse{website}{\documentvariable{website}}{%
+    https://www.company.com
+  }
+}
+
+\define\TextCompanyAddressPostal{
+  \doifdocumentvariableelse{address}{\documentvariable{address}}{Postal Address}
+}
+
+\define\TextCompanyAddressPhone{
+  \doifdocumentvariableelse{phone}{\documentvariable{phone}}{1-800-555-1212}
+}
+
+\define\TextCompanyAddressEmail{
+  \doifdocumentvariableelse{email}{\documentvariable{email}}{email@company.com}
+}
 
