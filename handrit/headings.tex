@@ -11,6 +11,10 @@
   align={nothyphenated, notcollapsed, verytolerant, broad},
 ]
 
+\definenumber[TextSubsection][
+  prefix=no,
+]
+
 \setuphead[chapter][
   style=,
   command=\TextChapter,
@@ -21,16 +25,20 @@
 
 \setuphead[section][
   number=no,
+  style=\Words,
   before={\blank[2*big]},
   after={\blank[2*medium]},
-  style=\Words,
 ]
 
 \setuphead[subsection][
   number=no,
-  indent=no,
-  before={},
-  deeptextcommand=\TextByLine,
   style=\Words,
+  indent=no,
+  before={
+    % Add a scene separator before beginning the second subsection.
+    \incrementnumber[TextSubsection]
+    \doif{\rawcountervalue[TextSubsection]}{2}{\thinrule}
+  },
+  deeptextcommand=\TextByLine,
 ]
 
