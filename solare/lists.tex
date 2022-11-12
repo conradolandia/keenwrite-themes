@@ -1,31 +1,37 @@
-\defineframed[BookBulletFrame] [
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure lists
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\defineframed[TextBulletFrame] [
   frame=off,
   background=color,
-  backgroundcolor=BookColourHighlight,
+  backgroundcolor=TextColourPrimary,
   width=.5em,
   height=\framedparameter{width},
 ]
 
-\definesymbol[BookBulletSymbol][
-  {\BookBulletFrame{\strut}}
+\definesymbol[TextBulletSymbol][
+  {\TextBulletFrame{\strut}}
 ]
 
 % Indent enumerated lists and give number the highlight colour.
 \setupitemgroup[itemize][1][n][
   leftmargin=1em,
-  color=BookColourHighlight,
+  color=TextColourPrimary,
 ]
 
 % Indent itemized lists and give bullet lists a square style.
 % Order matters, this must come after the enumerated list.
 \setupitemize[1][broad][
   leftmargin=1em,
-  symbol=BookBulletSymbol,
+  symbol=TextBulletSymbol,
 ]
 
-\definesymbol[BookBulletSymbol2][{\BookColourBodyLight\bullet}]
+\definesymbol[TextBulletSymbol2][{\TextColourPrimaryLt\bullet}]
 
 \setupitemize[2][broad][
-  symbol=BookBulletSymbol2,
+  symbol=TextBulletSymbol2,
 ]
 

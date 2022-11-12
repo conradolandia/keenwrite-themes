@@ -1,5 +1,11 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure font names and sizes
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
 % Set up the body and heading fonts.
-\starttypescript [serif] [BookFontBody]
+\starttypescript [serif] [TextFontBody]
   \definefontsynonym[Serif]
     [name:calibriregular]
     [features=default]
@@ -14,7 +20,7 @@
     [features=default]
 \stoptypescript
 
-\starttypescript [sans] [BookFontHeading]
+\starttypescript [sans] [TextFontHeading]
   \definefontsynonym[Sans]
     [name:bryantproregular]
     [features=default]
@@ -29,19 +35,19 @@
     [features=default]
 \stoptypescript
 
-\definetypeface[BookFont] [rm] [serif] [BookFontBody]    [default]
-\definetypeface[BookFont] [ss] [sans]  [BookFontHeading] [default]
-\definetypeface[BookFont] [mm] [math]  [schola]          [default] [rscale=auto]
-\definetypeface[BookFont] [tt] [mono]  [cursor]          [default] [rscale=0.85]
+\definetypeface[TextFont] [rm] [serif] [TextFontBody]    [default]
+\definetypeface[TextFont] [ss] [sans]  [TextFontHeading] [default]
+\definetypeface[TextFont] [mm] [math]  [schola]          [default] [rscale=auto]
+\definetypeface[TextFont] [tt] [mono]  [cursor]          [default] [rscale=0.85]
 
-\usetypescript[BookFont]
-\setupbodyfont[BookFont]
+\usetypescript[TextFont]
+\setupbodyfont[TextFont]
 
 % Equate \it with \em
 \setupbodyfontenvironment[default][em=italic]
 
 % Font sizes for chapter heading and chapter number.
-\definefont[BookFontChapter][SansRegular sa 2.5]
-\definefont[BookFontSection][SansRegular sa 1.75]
-\definefont[BookFontSubsection][SansRegular sa 1.25]
+\definefont[TextFontChapter][SansRegular sa 2.5]
+\definefont[TextFontSection][SansRegular sa 1.75]
+\definefont[TextFontSubsection][SansRegular sa 1.25]
 

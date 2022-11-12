@@ -1,0 +1,13 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure how PDF files are inserted
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\def\insertestimate{%
+  \setuppapersize[A4,landscape]
+  \blank[big]
+  \filterpages[preliminary.pdf][1]
+  \setuppapersize[A4,portrait]
+}
+

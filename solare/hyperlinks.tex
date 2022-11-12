@@ -1,8 +1,14 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Command to simplify hyperlink syntax
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
 % Avoid green hyperlinks.
 \setupinteraction[
   state=start,
-  color=BookColourHyperlink,
-  contrastcolor=BookColourHyperlink,
+  color=TextColourHyperlink,
+  contrastcolor=TextColourHyperlink,
   style=,
 ]
 
@@ -10,14 +16,14 @@
 
 % Create hyperlink references within the document.
 \define[2]\href{%
-  \goto{\tf\color[BookColourHyperlink]{#1}}[url(#2)]%
+  \goto{\tf\color[TextColourHyperlink]{#1}}[url(#2)]%
 }
 
 \define[1]\email{%
-  \goto{\tf\color[BookColourHyperlink]{#1}}[url(mailto:#1)]%
+  \goto{\tf\color[TextColourHyperlink]{#1}}[url(mailto:#1)]%
 }
 
 \define[1]\phone{%
-  \goto{\tf\color[BookColourHyperlink]{#1}}[url(tel:#1)]%
+  \goto{\tf\color[TextColourHyperlink]{#1}}[url(tel:#1)]%
 }
 

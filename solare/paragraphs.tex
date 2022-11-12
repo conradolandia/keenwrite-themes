@@ -1,13 +1,15 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %
-% Configure definition lists
+% Configure paragraphs
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\definedescription[description][
-  distance=\zeropoint,
-  margin=1em,
-  before={\blank[none]},
-  after={\blank[none]},
+\definemeasure[pointoneline][
+  .5\baselineskip
+]
+
+% Increase whitespace between paragraphs.
+\setupwhitespace[
+  \measure{pointoneline}
 ]
 

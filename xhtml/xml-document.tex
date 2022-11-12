@@ -5,7 +5,8 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \definemakeup[coverpage]
-\define\completecover
+\define\completecover{}
+\define\TextBackgrounds{}
 
 \startxmlsetups xml:html
   % Introduce small space around guillemet double quotation marks.
@@ -26,6 +27,8 @@
     \startcoverpagemakeup
       \completecover
     \stopcoverpagemakeup
+
+    \TextBackgrounds
 
     \setcounter [userpage] [2]
     \startfrontmatter
