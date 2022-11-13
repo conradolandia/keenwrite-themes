@@ -5,33 +5,33 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 % Creates an expandable if statement that can be passed into goto.
-\def\IfTextDocumentVarExists#1#2#3{%
+\defineexpandable[3]\IfTextDocumentVarExists{%
   \if\relax\documentvariable{#1}\relax#3\else#2\fi%
 }
 
-\def\TextTitle{%
+\defineexpandable\TextTitle{%
   \IfTextDocumentVarExists{title}{\documentvariable{title}}{Title}%
 }
 
-\def\TextCompanyName{%
+\defineexpandable\TextCompanyName{%
   \IfTextDocumentVarExists{company}{\documentvariable{company}}{Company}%
 }
 
-\def\TextCompanyAddressWebsite{%
+\defineexpandable\TextCompanyAddressWebsite{%
   \IfTextDocumentVarExists{website}{\documentvariable{website}}{%
     https://www.company.com
   }
 }
 
-\def\TextCompanyAddressPostal{%
+\defineexpandable\TextCompanyAddressPostal{%
   \IfTextDocumentVarExists{address}{\documentvariable{address}}{Postal Address}%
 }
 
-\def\TextCompanyAddressPhone{%
+\defineexpandable\TextCompanyAddressPhone{%
   \IfTextDocumentVarExists{phone}{\documentvariable{phone}}{1-800-555-1212}%
 }
 
-\def\TextCompanyAddressEmail{%
+\defineexpandable\TextCompanyAddressEmail{%
   \IfTextDocumentVarExists{email}{\documentvariable{email}}{email@company.com}%
 }
 
