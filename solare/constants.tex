@@ -1,26 +1,37 @@
-\define\TextTitle{
-  \doifdocumentvariableelse{title}{\documentvariable{title}}{False}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure constant values (based on metadata existence)
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Creates an expandable if statement that can be passed into goto.
+\def\IfTextDocumentVarExists#1#2#3{%
+  \if\relax\documentvariable{#1}\relax#3\else#2\fi%
 }
 
-\define\TextCompanyName{
-  \doifdocumentvariableelse{company}{\documentvariable{company}}{Company}
+\def\TextTitle{%
+  \IfTextDocumentVarExists{title}{\documentvariable{title}}{Title}%
 }
 
-\define\TextCompanyAddressWebsite{
-  \doifdocumentvariableelse{website}{\documentvariable{website}}{%
+\def\TextCompanyName{%
+  \IfTextDocumentVarExists{company}{\documentvariable{company}}{Company}%
+}
+
+\def\TextCompanyAddressWebsite{%
+  \IfTextDocumentVarExists{website}{\documentvariable{website}}{%
     https://www.company.com
   }
 }
 
-\define\TextCompanyAddressPostal{
-  \doifdocumentvariableelse{address}{\documentvariable{address}}{Postal Address}
+\def\TextCompanyAddressPostal{%
+  \IfTextDocumentVarExists{address}{\documentvariable{address}}{Postal Address}%
 }
 
-\define\TextCompanyAddressPhone{
-  \doifdocumentvariableelse{phone}{\documentvariable{phone}}{1-800-555-1212}
+\def\TextCompanyAddressPhone{%
+  \IfTextDocumentVarExists{phone}{\documentvariable{phone}}{1-800-555-1212}%
 }
 
-\define\TextCompanyAddressEmail{
-  \doifdocumentvariableelse{email}{\documentvariable{email}}{email@company.com}
+\def\TextCompanyAddressEmail{%
+  \IfTextDocumentVarExists{email}{\documentvariable{email}}{email@company.com}%
 }
 
