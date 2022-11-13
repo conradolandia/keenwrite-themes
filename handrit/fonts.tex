@@ -4,6 +4,8 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+\definefont [TextFontEmoji] [OpenSansEmoji]
+
 % Disable replacing ligatures and ellipses (tlig=no).
 \definefontfeature[TextFontFeature][default][
   liga=no,
@@ -13,7 +15,18 @@
   expansion=quality,
 ]
 
-\definefontfamily [TextFont] [rm] [TeX Gyre Cursor] [features=TextFontFeature]
+% Prime, double-prime, multiplication, musical notes, etc.
+\definefallbackfamily [TextFont] [serif] [TeX Gyre Pagella Math] [
+  range={generalpunctuation, miscellaneoussymbols}
+]
+
+% Greek letters aren't defined by Courier Prime.
+\definefallbackfamily [TextFont] [serif] [Roboto Mono] [
+  range=greekandcoptic,
+  rscale=.9
+]
+
+\definefontfamily [TextFont] [rm] [Courier Prime] [features=TextFontFeature]
 \definefontfamily [TextFont] [ss] [TeX Gyre Cursor]
 \definefontfamily [TextFont] [tt] [ALMFixed]
 \definefontfamily [TextFont] [mm] [TeX Gyre Pagella Math]
