@@ -1,0 +1,24 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure projections. Creates a fancy border around text with a shaded
+% background.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definestartstop[typewritten][
+  before={
+    \blank[big]%
+    \startnarrower%
+  },
+  after={\stopnarrower\blank[big]},
+]
+
+\definestartstop[salutation][
+  after={\blank[big]},
+]
+
+\definestartstop[closing][
+  before={\blank[big]\startalignment[flushright]},
+  after={\stopalignment},
+]
+
