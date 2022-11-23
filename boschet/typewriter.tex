@@ -1,0 +1,35 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure projections. Creates a fancy border around text with a shaded
+% background.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\starttypescript [mono] [TextTypewriter] 
+  \definefontsynonym [Mono] [underwoodquiettab]
+\stoptypescript
+
+\starttypescript [TextTypewriter]
+  \definetypeface
+    [TextTypewriter] [tt] [mono] [TextTypewriter] [default] [rscale=0.75]
+\stoptypescript
+
+\definestartstop[typewritten][
+  before={
+    \blank[big]%
+    \startnarrower%
+    \switchtobodyfont[TextTypewriter]%
+    \setupinterlinespace[medium]%
+  },
+  after={\stopnarrower\blank[big]},
+]
+
+\definestartstop[salutation][
+  after={\blank[big]},
+]
+
+\definestartstop[closing][
+  before={\blank[big]\startalignment[flushright]},
+  after={\stopalignment},
+]
+
