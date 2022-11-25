@@ -1,0 +1,15 @@
+% Demonstrates how to add padding around guillements.
+%
+% TODO: Apply to a French theme.
+
+% Add padding around the guillemets
+\definecharacterspacing [guillemet]
+\setupcharacterspacing  [guillemet] ["00AB] [right=.1, alternative=1]
+\setupcharacterspacing  [guillemet] ["00BB] [left=.1, alternative=1]
+\setupcharacterspacing  [guillemet] ["2039] [right=.1, alternative=1]
+\setupcharacterspacing  [guillemet] ["203A] [left=.1, alternative=1]
+
+\startsetups[guillemet]
+  \setcharacterspacing[guillemet]
+\stopsetups
+
