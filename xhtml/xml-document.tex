@@ -7,9 +7,13 @@
 \definemakeup[coverpage]
 \define\completecover{}
 \define\TextBackgrounds{}
+\define\TextCommaSpacing{\setupmathematics[autopunctuation=yes]}
 
 \startxmlsetups xml:html
-  % Introduce small space around guillemet double quotation marks.
+  % Remove large space after a comma in mathematical expressions.
+  \TextCommaSpacing
+
+  % If configured, add a small space around guillemet quotation marks.
   \setup[guillemet]
 
   % Generalzed forms of document variables are defined first.
