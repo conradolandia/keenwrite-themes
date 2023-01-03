@@ -4,7 +4,11 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+% When converting SVG files, the converted files need to be written to
+% a directory having write permissions, otherwise images will be missing.
 \setupexternalfigures[
-  directory={\env{imagesdir},\env{cachesdir},images},
+  directory={\env{themesdir},\env{imagesdir},\env{cachesdir}},
+  cache={\env{cachesdir}},
+  location={global,local.default},
 ]
 
