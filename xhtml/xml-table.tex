@@ -45,7 +45,16 @@
 \stopxmlsetups
 
 \startxmlsetups xml:td
-  \startxcell[align={flush\xmlatt{#1}{align}}]
+  % HTML uses "center" where ConTeXt uses "middle". If not specified, we'll
+  % fallback to "flush", which equates to "flushleft". If qualified, the value
+  % will only be "left" or "right", leading to "flushleft" and "flushright".
+  \def\TableColAlign{%
+    \xmldoifelseatt{#1}{align}{center}%
+      {middle}%
+      {flush\xmlatt{#1}{align}}%
+  }
+
+  \startxcell[align=\TableColAlign]
     \xmlflush{#1}
   \stopxcell
 \stopxmlsetups
