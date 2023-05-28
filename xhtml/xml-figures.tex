@@ -12,3 +12,16 @@
   location={global,local.default},
 ]
 
+% When converting from SVG to PDF, export the page, not the drawing area.
+\startluacode
+function figures.converters.svg.pdf( oldname, newname )
+  figures.programs.inkscape.runner {
+    format     = "filename",
+    resolution = "600",
+    crop       = "--export-area-page",
+    newname    = dir.expandname( newname ),
+    oldname    = dir.expandname( oldname ),
+  }
+end
+\stopluacode
+
