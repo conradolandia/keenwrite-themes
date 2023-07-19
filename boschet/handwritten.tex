@@ -1,0 +1,20 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure hand written style.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definestartstop[handwritten][
+  before={%
+    \blank[big]%
+    \startnarrower%
+    \hw
+  },
+  after={\stopnarrower\blank[medium]},
+]
+
+\definestartstop[hwheading][
+  before={\testpage[2]\blank[big]\startalignment[middle]},
+  after={\stopalignment\blank[medium]},
+]
+

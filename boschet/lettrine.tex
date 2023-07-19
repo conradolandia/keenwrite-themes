@@ -4,6 +4,58 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+% Ensures that the second paragraph does not overlap the lettrine. 
+% Courtesy of Max Chernoff from the ConTeXt mailing list, who writes:
+%
+%   "Normally manipulating nodes inside the callbacks is the wrong way to
+%    do something, but in this case, that's exactly how the standard initial
+%    code works. 
+% 
+%   "We need to modify the 'default' alternative since `\setupinitial`
+%    provides no way for us to set a different alternative. A better solution
+%    would be to provide a new alternative so we wouldn't need to make
+%    questionable overrides to the base code."
+%
+\startluacode
+  userdata.hangindent = 0
+
+  function userdata.post_lettrine( head )
+    nodes.tasks.disableaction( "finalizers", "userdata.post_lettrine" )
+
+    if tex.prevgraf < math.abs( tex.hangafter ) then
+      userdata.hangindent = tex.hangindent
+      nodes.tasks.enableaction( "processors", "userdata.next_par" )
+    end
+
+    return head
+  end
+
+  nodes.tasks.appendaction( "finalizers", "before", "userdata.post_lettrine" )
+  nodes.tasks.disableaction( "finalizers", "userdata.post_lettrine" )
+
+  function userdata.next_par( head )
+    nodes.tasks.disableaction( "processors", "userdata.next_par" )
+
+    if head.next.id == node.id( "glue" ) and
+      head.next.subtype == 20
+    then
+      head.next.width = userdata.hangindent
+    end
+
+    return head
+  end
+
+  nodes.tasks.appendaction( "processors", "before", "userdata.next_par" )
+  nodes.tasks.disableaction( "processors", "userdata.next_par" )
+
+  local default = typesetters.initials.actions.default
+
+  function typesetters.initials.actions.default( ... )
+    nodes.tasks.enableaction( "finalizers", "userdata.post_lettrine" )
+    return default( ... )
+  end
+\stopluacode
+
 \setupinitial[
   n=2,
   style=TextFontChapter,
