@@ -1,0 +1,68 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure banned book page style.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Force extra vertical whitespace between paragraphs, except the first line
+% before the recipient's name. 
+\definestartstop[recipient][
+  style=\bf,
+  before={%
+    \blank[back]%
+    \setupwhitespace[none]%
+  },
+]
+
+\definestartstop[banned][%
+  before={%
+    % Shrink images (e.g., seal logo)
+    \setupexternalfigures[%
+      maxwidth=.45\makeupwidth,
+      width=.45\makeupwidth,
+    ]
+
+    \definecolor[TextColourBannedPage][h=224466]
+    \definecolor[TextColourBannedBanner][h=662222]
+
+    \definetextbackground[TextBackgroundBannedBanner][%
+      frame=off,
+      location=paragraph,
+      background=color,
+      backgroundcolor=TextColourBannedBanner,
+      topoffset=.75\bodyfontsize,
+      bottomoffset=.5\bodyfontsize,
+    ]
+
+    \setupcolors[textcolor=white]
+
+    \setuphead[section][%
+      align=middle,
+      style={\TextFontSection\WORD},
+      before={%
+        \setupwhitespace[none]%
+        \startTextBackgroundBannedBanner%
+      },
+      after={
+        \stopTextBackgroundBannedBanner%
+        \setupwhitespace[small]%
+      },
+    ]
+
+    \setupbackgrounds[page][%
+      background=color,
+      backgroundcolor=TextColourBannedPage,
+    ]
+
+    % Eliminate header and footer.
+    \startTEXpage[
+      align=middle,
+      offset=\backspace,
+      width=\paperwidth,
+      height=\paperheight,
+    ]%
+    \tfa\ss%
+  },
+  after={\stopTEXpage},
+]
+

@@ -1,0 +1,17 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure corrupted page style.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definestartstop[corrupted][
+  before={%
+    \startTEXpage[
+      offset=\backspace,
+      width=\paperwidth,
+      height=\paperheight
+    ]\blank[big]%
+  },
+  after={\stopTEXpage},
+]
+
