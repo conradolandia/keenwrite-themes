@@ -18,8 +18,8 @@
   before={%
     % Shrink images (e.g., seal logo)
     \setupexternalfigures[%
-      maxwidth=.45\makeupwidth,
-      width=.45\makeupwidth,
+      maxwidth=.5\makeupwidth,
+      width=.5\makeupwidth,
     ]
 
     \definecolor[TextColourBannedPage][h=224466]
@@ -55,13 +55,7 @@
     ]
 
     % Eliminate header and footer.
-    \startTEXpage[
-      align=middle,
-      offset=\backspace,
-      width=\paperwidth,
-      height=\paperheight,
-    ]%
-    \incrementnumber[userpage]
+    \startTEXpage[align=middle]%
     \tfa\ss%
   },
   after={\stopTEXpage},

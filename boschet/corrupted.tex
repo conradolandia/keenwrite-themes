@@ -6,12 +6,7 @@
 
 \definestartstop[corrupted][
   before={%
-    \startTEXpage[
-      offset=\backspace,
-      width=\paperwidth,
-      height=\paperheight
-    ]%
-    \incrementnumber[userpage]
+    \startTEXpage%
     \blank[big]%
   },
   after={\stopTEXpage},
