@@ -15,20 +15,20 @@
   %
   \newbox\MacKernBox%
   \setbox\MacKernBox\hbox{\inframed[offset=\zeropoint, width=fit]{Mc}}%
-  \def\MacDelta{\dimexpr\wd\MacKernBox-\wd\MacMBox-\wd\MacCBox\relax}%
-  \def\MacUWidth{\dimexpr\wd\MacCBox-.75\MacDelta\relax}%
-  \def\MacRule{\vrule width \MacUWidth height .04em depth \zeropoint \relax}%
-  \def\MacKern{\dimexpr\wd\MacKernBox-\wd\MacMBox-\wd\MacCBox\relax}%
   \def\MacHeight{\dimexpr\ht\MacMBox-\ht\MacCBox\relax}%
+  \def\MacWidth{\dimexpr.9\wd\MacCBox\relax}%
+  \def\MacRule{\vrule width .8\MacWidth height .05em depth \zeropoint \relax}%
+  \def\MacKernLeft{\dimexpr\MacWidth-0.05em\relax}%
+  \def\MacKernRight{.35\MacWidth}%
   %
   % Write Mc, where c has a macron, to the document.
   %
-  M{%     
+  M{%
     \dontleavehmode{\raisebox{\MacHeight}\hbox{c}}%
-    \kern-1.04\MacUWidth
-    \MacRule
-    \kern.08\MacUWidth
-  }%
+    \kern-\MacKernLeft%
+    \MacRule%
+    \kern-\MacKernRight%
+  }
 }%
 
 \startluacode
