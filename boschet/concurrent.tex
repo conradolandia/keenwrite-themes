@@ -1,0 +1,91 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+% Configure presentation of concurrent events.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\definenumber[ConcurrentTextSetCounter][prefix=no]
+\definenumber[ConcurrentTextGetCounter][prefix=no]
+
+\setnumber[ConcurrentTextSetCounter][0]
+\setnumber[ConcurrentTextGetCounter][0]
+
+% Map each label as global key/value pairs.
+\def\ConcurrentTextSet#1{%
+  \incrementnumber[ConcurrentTextSetCounter]%
+  \setxvariable
+    {concurrent}
+    {text:\rawcountervalue[ConcurrentTextSetCounter]}
+    {#1}}
+
+% Account for the counter incrementing twice and the index being 1-based.
+\def\ConcurrentTextGet{%
+  \incrementnumber[ConcurrentTextGetCounter]%
+  \getvariable
+    {concurrent}
+    {text:\number\numexpr1+\rawcountervalue[ConcurrentTextGetCounter]/2\relax}}
+
+\startuseMPgraphic{GraphicConcurrent}
+  numeric index;
+  index := 1;
+
+  % Differentiate between new text blocks and those crossing pages.
+  if (multikind[ index ] = "single") or (multikind[ index ] = "first"):
+    string legend;
+    legend := "\ConcurrentTextGet";
+
+    % For new text blocks, write the title.
+    picture p;
+    p := textext.rt( legend )
+      shifted ulcorner multipars[ index ]
+      shifted (1cm, 0);
+
+    % Draw the horizontal rule only for the initial text block.
+    draw
+      ulcorner multipars[ index ] shifted (1mm + xpart lrcorner p, 0) --
+      urcorner multipars[ index ];
+
+    % Draw the vertical rule for the initial text block.
+    draw
+      llcorner multipars[ index ] --
+      ulcorner multipars[ index ] --
+      ulcorner multipars[ index ] shifted (9mm, 0);
+
+    draw p;
+  else:
+    % Draw only the vertical rule only when crossing page boundaries.
+    draw
+      llcorner multipars[ index ] --
+      ulcorner multipars[ index ];
+  fi
+\stopuseMPgraphic
+
+\definetextbackground[TextConcurrentFrame][
+  mp=GraphicConcurrent,
+  frame=off,
+  topoffset=1em,
+  leftoffset=1em,
+  before=\blank[2*big],
+  after=\blank,
+  location=paragraph,
+]
+
+\startsetups concurrent:before
+  \ConcurrentTextSet{%
+    % Be sure to format "a.m." and other special phrases.
+    \expandafter\TextReplacement{%
+      \xmlatt{\getvariable{div}{concurrent}}{data-title}%
+    }
+  }
+  \startTextConcurrentFrame
+\stopsetups
+
+\startsetups concurrent:after
+  \stopTextConcurrentFrame
+\stopsetups
+
+\definestartstop[concurrent][
+  before=\directsetup{concurrent:before},
+  after=\directsetup{concurrent:after}
+]
+
