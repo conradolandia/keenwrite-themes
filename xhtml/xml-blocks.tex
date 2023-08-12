@@ -59,6 +59,8 @@ interfaces.implement {
 
 % Map arbitrary div classes, defined by fenced divs.
 \startxmlsetups xml:div
+  % Capture attributes as variables.
+  \setvariable{div}{\xmlatt{#1}{class}}{#1}
   \start[\xmlatt{#1}{class}]\xmlflush{#1}\stop
 \stopxmlsetups
 
